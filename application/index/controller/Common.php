@@ -44,6 +44,7 @@ class Common extends Controller {
         $phone = Db::name('phone_pai')->select();
         $this->assign('phone',$phone);
         //手机模型
+
     }
 
 

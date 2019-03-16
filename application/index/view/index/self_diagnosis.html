@@ -1,0 +1,168 @@
+{include file="public/header" /}
+
+ {include file="public/top" /}
+
+<header id="mobile-header" class="site-header" role="banner">
+<div class="mobile-header-top">
+	<div class="site-inner-big">
+		<div class="mobile-site-header-main">
+			<div class="header-search">
+				<!-- <div class="header-search-block">
+					<a href="#" id="header-search-toggle"><i class="icon-icons-search"></i></a>
+				</div>  -->
+			</div>
+			<div class="site-branding">
+				<a href="/">
+					<img src="__STATIC__/home/wp-content/themes/happytel/images/logo.png" alt="HappyTel">
+				</a>
+			</div>
+			<div class="mobile-btn">
+				<a href="#" id="mm-toggle"><i class="icon-icons-menu"></i></a>
+			</div>
+		</div><!-- .site-header-main -->
+	</div>
+</div>
+<div class="mobile-header-bottom">			
+	<div class="header-quote">
+		<span>I would like to repair my device</span> <a href="/online-quote/" class="btn">Get a quote</a>	
+	</div>
+</div>
+<div id="mobile-menu-block" class="site-header-menu">
+	<div class="menu-main-menu-container">
+		<ul class="primary-mobile-menu">
+			<li class="menu-item">
+				<a href="/contact-us/">
+					<i class="icon-icons-shop"></i>
+					<h3>Contact Us</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/self-diagnosis/">
+					<i class="icon-icons-screen-damage"></i>
+					<h3>Self Diagnosis</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/online-quote/">
+					<i class="icon-icons-business"></i>
+					<h3>Online Quote</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/about-us/">
+					<i class="icon-icons-happytel"></i>
+					<h3>About Us</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/career-opportunities/">
+					<i class="icon-icons-suitcase"></i>
+					<h3>Careers</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/store-locator/">
+					<i class="icon-icons-pin"></i>
+					<h3>Store Locator</h3>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="menu-footer">
+		<ul>
+			<li><a href="https://www.facebook.com/behappytel/"><i class="icon-icons-facebook"></i> Facebook</a></li>
+		</ul>
+	</div>			
+</div>
+</header><!-- .site-header -->
+
+<div class="diagnosis-page">
+    <div class="page-header">
+        <div class="breadcrumb">
+            <div class="site-inner">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><span>Self Diagnosis</li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-inner">
+            <h1 class="page-title">Self Diagnosis</h1>
+            <div class="sub-title">
+                <p>Not sure what issue you are having with your device?</p>
+                <p>Find out your issue and get a more accurate quote for a repair.</p>
+            </div>
+        </div>
+    </div>
+    <div class="diagnosis-search-block">    
+            <div class="site-inner">
+                <div class="ds-wrapper">
+                    <form id="diagnosis-search" action="/diagnosis-results/" method="post">
+                        <input type="text" name="ds-input"/>
+                        <input type="submit" value="Search"/>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div class="page-content">
+        <div class="site-inner">
+        <h2>What does the issue relate to? </h2>
+        <div class="issues-block">
+            <div class="issue-box">
+                <a href="{:url('index/self_diagnosis_list')}">
+                    <i class="icon-icons-screen-damage"></i>
+                    <span>Screen / Display</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/power-battery-charging/">
+                    <i class="icon-icons-battery"></i>
+                    <span>Power / Battery /Charging</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/sound/">
+                    <i class="icon-icons-sound"></i>
+                    <span>Sound</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/camera/">
+                    <i class="icon-icons-camera"></i>
+                    <span>Camera</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/buttons/">
+                    <i class="icon-icons-button"></i>
+                    <span>Buttons</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/housing-frame/">
+                    <i class="icon-icons-tablet"></i>
+                    <span>Housing / Frame</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/signal-reception/">
+                    <i class="icon-icons-reception"></i>
+                    <span>Signal / Reception</span>
+                </a>
+            </div>
+            <div class="issue-box">
+                <a href="/self-diagnosis/water-damage/">
+                    <i class="icon-icons-water-damage"></i>
+                    <span>Water Damage</span>
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+{include file="public/footer" /}
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+{extend name='admin@public/content'}
+
+{block name="content"}
+<form class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">案例名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" value='{$vo.title|default=""}'   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预览图</label>
+        <div class="layui-input-block">
+            <input type="text" name="yulanimg" value='{$vo.yulanimg|default=""}'   class="layui-input">
+            <span style="color: red">大概400*180左右</span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">展示图</label>
+        <div class="layui-input-block">
+            <input type="text" name="zansimg" value='{$vo.zansimg|default=""}'   class="layui-input">
+            <span style="color: red">大概1200*460左右</span>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">难度</label>
+        <div class="layui-input-inline">
+            <input type="text" name="nandu" value='{$vo.nandu|default=""}'  class="layui-input">
+        </div>
+        <label class="layui-form-label">特色</label>
+        <div class="layui-input-inline">
+            <input type="text" name="tese" value='{$vo.tese|default=""}'  class="layui-input">
+        </div>
+        <label class="layui-form-label">推荐</label>
+        <div class="layui-input-inline">
+            <input type="text" name="tuijian" value='{$vo.tuijian|default=""}'  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">人数</label>
+        <div class="layui-input-inline">
+            <input type="text" name="reshu" value='{$vo.reshu|default=""}'  class="layui-input">
+        </div>
+        <label class="layui-form-label">天数</label>
+        <div class="layui-input-inline">
+            <input type="text" name="tianshu" value='{$vo.tianshu|default=""}'  class="layui-input">
+        </div>
+        <label class="layui-form-label">车程</label>
+        <div class="layui-input-inline">
+            <input type="text" name="cheshu" value='{$vo.cheshu|default=""}'  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">行程</label>
+        <div class="layui-input-inline">
+            <input type="text" name="bushu" value='{$vo.bushu|default=""}'  class="layui-input">
+        </div>
+        <label class="layui-form-label">地点</label>
+        <div class="layui-input-inline">
+            <input type="text" name="didian" value='{$vo.didian|default=""}'  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-inline">
+            <input type="text" name="price" value='{$vo.price|default=""}'  class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">案例简介</label>
+    <div class="layui-input-block">
+      <input type="text" name="jianjie" value='{$vo.jianjie|default=""}'  class="layui-input">
+    </div>
+  </div>
+    <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">案例内容</label>
+    <div class="layui-input-block">
+      <textarea name="content" class="layui-textarea">{if isset($vo['id'])}{$vo.content}{/if}</textarea>
+    </div>
+  </div>
+    
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+<!--        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>-->
+    </div>
+</form>
+<script>
+    require(['jquery', 'ckeditor'], function() {
+        window.form.render();
+        $('form [name="yulanimg"]').uploadOneImage();
+         $('form [name="zansimg"]').uploadOneImage();
+        window.createEditor('[name="content"]', {height: 500});
+    });
+</script>
+<script>
+    form.on('select(one)', function (data) {
+          $.ajax({
+                type: 'POST',
+                url: "{:url('goods/linkage')}",
+                data: {id:data.value},
+                dataType:  'json',
+                success: function(data){
+                $("#two").html("");
+                  $.each(data, function(key, val) {
+                    var option1 = $("<option>").val(val.id).text(val.name);
+                            $("#two").append(option1);
+                            form.render('select');
+                        }); 
+                    $("#two").get(0).selectedIndex=0;
+                }
+        });
+    }); 
+</script>
+
+{/block}
+

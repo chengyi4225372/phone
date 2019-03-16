@@ -1,0 +1,95 @@
+{extend name='admin@public/content'}
+
+{block name="content"}
+<form class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属手机品牌</label>
+        <div class="layui-input-inline">
+            <select name="pid" lay-filter="one">
+                <option value=""></option>
+                {volist name="pai" id="list"}
+                {if isset($vo['id'])}
+                <option value="{$list.id}" {if condition="$list.id eq $vo.pid"} selected="" {/if}>{$list.pai}</option>
+                {else /}
+                <option value="{$list.id}">{$list.pai}</option>
+                {/if}
+                {/volist}
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属手机型号</label>
+    <div class="layui-input-inline">
+        <select name="mid" id="mid" lay-filter="mid">
+            <option value="">所属手机型号</option>
+        </select>
+    </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属诊断类型</label>
+        <div class="layui-input-inline">
+            <select name="cid">
+                <option value=""></option>
+                {volist name="zhenduan" id="list"}
+                {if isset($vo['id'])}
+                <option value="{$list.id}" {if condition="$list.id eq $vo.cid"} selected="" {/if}>{$list.names}</option>
+                {else /}
+                <option value="{$list.id}">{$list.names}</option>
+                {/if}
+                {/volist}
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">诊断报价</label>
+        <div class="layui-input-block">
+            <input type="text" name="money" value='{$vo.money|default=""}'   class="layui-input">
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <!--        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>-->
+    </div>
+</form>
+
+<script>
+    require(['jquery', 'ckeditor'], function() {
+        window.form.render();
+        $('form [name="img"]').uploadOneImage();
+        window.createEditor('[name="content"]', {height: 500});
+
+    });
+</script>
+<script>
+    form.on('select(one)', function (data) {
+        $.ajax({
+            type: 'POST',
+            url: "{:url('phonemoney/models')}",
+            data: {id:data.value},
+            dataType:  'json',
+            success: function(data){
+                $("#mid").html("");
+                $.each(data.data, function(key, val) {
+                    var option1 = $("<option>").val(val.id).text(val.models);
+                    $("#mid").append(option1);
+                    form.render('select');
+                });
+                $("#mid").get(0).selectedIndex=0;
+            }
+        });
+    });
+</script>
+{/block}
+
+
+

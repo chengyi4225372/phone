@@ -1,0 +1,886 @@
+{include file="public/header" /}
+
+{include file="public/top" /}
+
+<header id="mobile-header" class="site-header" role="banner">
+<div class="mobile-header-top">
+	<div class="site-inner-big">
+		<div class="mobile-site-header-main">
+			<div class="header-search">
+				<div class="header-search-block">
+					<a href="#" id="header-search-toggle"><i class="icon-icons-search"></i></a>
+				</div>
+			</div>
+			<div class="site-branding">
+				<a href="/">
+					<img src="__STATIC__/home/wp-content/themes/happytel/images/logo.png" alt="HappyTel">
+				</a>
+			</div>
+			<div class="mobile-btn">
+				<a href="#" id="mm-toggle"><i class="icon-icons-menu"></i></a>
+			</div>
+		</div><!-- .site-header-main -->
+	</div>
+</div>
+<div class="mobile-header-bottom">			
+	<div class="header-quote">
+		<span>I would like to repair my device</span> <a href="/online-quote/" class="btn">Get a quote</a>	
+	</div>
+</div>
+<div id="mobile-menu-block" class="site-header-menu">
+	<div class="menu-main-menu-container">
+		<ul class="primary-mobile-menu">
+			<li class="menu-item">
+				<a href="/contact-us/">
+					<i class="icon-icons-shop"></i>
+					<h3>Contact Us</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/self-diagnosis/">
+					<i class="icon-icons-screen-damage"></i>
+					<h3>Self Diagnosis</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/online-quote/">
+					<i class="icon-icons-business"></i>
+					<h3>Online Quote</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/about-us/">
+					<i class="icon-icons-happytel"></i>
+					<h3>About Us</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/career-opportunities/">
+					<i class="icon-icons-suitcase"></i>
+					<h3>Careers</h3>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a href="/store-locator/">
+					<i class="icon-icons-pin"></i>
+					<h3>Store Locator</h3>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="menu-footer">
+		<ul>
+			<li><a href="https://www.facebook.com/behappytel/"><i class="icon-icons-facebook"></i> Facebook</a></li>
+		</ul>
+	</div>			
+</div>
+</header><!-- .site-header -->
+
+<div class="default-page quote-page">
+    <div class="page-bg">
+        <img width="2500" height="1667" src="__STATIC__/home/wp-content/uploads/2017/11/quote-bg.jpg" class="attachment-full size-full wp-post-image" alt="" srcset="__STATIC__/home/wp-content/uploads/2017/11/quote-bg.jpg 2500w, __STATIC__/home/wp-content/uploads/2017/11/quote-bg-300x200.jpg 300w, __STATIC__/home/wp-content/uploads/2017/11/quote-bg-768x512.jpg 768w, __STATIC__/home/wp-content/uploads/2017/11/quote-bg-1024x683.jpg 1024w, __STATIC__/home/wp-content/uploads/2017/11/quote-bg-1200x800.jpg 1200w" sizes="(max-width: 2500px) 100vw, 2500px" />    </div>
+    <div class="page-header">
+        <div class="site-inner">
+            <h1 class="page-title">Online Quote</h1>
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="site-inner">
+            <div class="page-content-block">
+ <form id="quote-form" action="/quote-result/" method="post">
+    <input type="hidden" name="store_id" id="store_id" value=""/>
+     <div class="form-row-1">
+        <span>I would like to repair my </span>
+        <span class="search-input-wrapper">
+            <span id="quote-brand-overlay" class="search-input-overlap"></span>
+            <input id="quote-brand" class="search-input" type="text" value="" name="brand" placeholder="Apple" required/>   
+        </span>
+        <span> model </span>
+        <span class="search-input-wrapper">
+            <span id="quote-model-overlay" class="search-input-overlap"></span>
+            <input id="quote-model" type="text" class="search-input" value="" name="model" placeholder="iPhone" required />
+        </span>
+    </div>
+    <div class="form-row">
+        <label for="quote-issue">Issue</label>
+        <span class="search-input-wrapper block">
+            <span id="quote-issue-overlay" class="search-input-overlap"></span>
+            <input type="text" id="quote-issue" name="issue" value="" class="search-input" required />
+        </span>
+    </div>
+    <div class="form-row">
+        <div class="form-row-state">
+            <label for="quote-state">State</label>
+            <span class="search-input-wrapper block">
+                <span id="quote-state-overlay" class="search-input-overlap"></span>
+                <input type="text" id="quote-state" value="" name="state" required />
+            </span>
+        </div>
+        <div class="form-row-store">
+            <label for="quote-store">Store</label>
+            <span class="search-input-wrapper block">
+                <span id="quote-store-overlay" class="search-input-overlap"></span>
+                <input type="text" id="quote-store" name="store" value="" required />
+            </span>
+        </div>
+    </div>
+    <div class="form-row">
+        <input type="submit" class="btn" value="Get a quote"/>
+    </div>
+</form>
+
+<div class="form-popup" id="brand-popup">
+    <div class="form-popup-header">
+        <input type="text" id="brand-popup-input" placeholder="Search for brand"/>
+    </div>
+    <div class="form-popup-content">
+        <ul>
+            <li></li>
+        </ul>
+        <p class="other-link"><a href="{:url('contact/contact')}">Other <span>(Please Contact for Custom Quote)</span></a></p>
+    </div>
+</div>
+<div class="form-popup" id="model-popup">
+    <div class="form-popup-header">
+        <input type="text" id="model-popup-input" placeholder="Search for model"/>
+    </div>
+    <div class="form-popup-content">
+        <ul>
+            <li></li>
+        </ul>
+        <p class="other-link"><a href="{:url('contact/contact')}">Other <span>(Please Contact for Custom Quote)</span></a></p>
+    </div>
+</div>
+<div class="form-popup" id="issue-popup">
+    <!-- <div class="form-popup-header">
+        <input type="text" id="issue-popup-input" placeholder="Search for issue"/>
+    </div> -->
+    <div class="form-popup-content">
+        <ul></ul>
+        <p class="other-link"><a class="others" href="{:url('contact/contact')}">Other <span>(Please Contact for Custom Quote)</span></a></p>
+    </div>
+</div>
+<div class="form-popup" id="state-popup">
+    <div class="form-popup-header">
+        <input type="text" id="state-popup-input" placeholder="Search for state"/>
+    </div>
+    <div class="form-popup-content">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+</div>
+<div class="form-popup" id="store-popup">
+    <div class="form-popup-header">
+        <input type="text" id="store-popup-input" placeholder="Search for store"/>
+    </div>
+    <div class="form-popup-content">
+        <ul id="store-list">
+            <li></li>
+        </ul>
+    </div>
+</div>
+<input type="hidden" class="user_latitude" />
+<input type="hidden" class="user_longitude" />
+
+<script>
+jQuery(document).ready(function($){
+    //var url = "/wp-content/themes/happytel/MobileRepairAPI.php";
+    var  url = "{:url('api/phoneinfo/index')}";
+    var initData = {
+        brand: "",
+        model: "",
+        issue: "",
+        state: "",
+        store: "",
+        storeId: ""
+    };
+
+    /*  GEO IP
+    ============================== */
+	
+    if (navigator.geolocation) {
+    
+      navigator.geolocation.getCurrentPosition(showPosition);
+    
+    } else {
+      console.log( "Geolocation is not supported by this browser.");
+    
+    }
+    
+    function showPosition(position) {
+      jQuery( '#quote-form' ).addClass( 'loading' );      
+      var user_latitude = position.coords.latitude;
+      var user_longitude = position.coords.longitude;
+      
+      jQuery( "input.user_latitude" ).val( user_latitude );
+      jQuery( "input.user_longitude" ).val( user_longitude );       
+    }
+    
+    function myFilter(popup){
+        var inputEle = $(popup+" .form-popup-header input"),
+            filter = inputEle.val().toUpperCase(),
+            ulEle = $(popup+" .form-popup-content ul"),
+            li = ulEle.find("li");
+
+           for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+
+    }
+
+    // 品牌 不为空
+    if(initData.brand != ""){
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "models",
+                brand: initData.brand
+            },
+            success: function(res){
+                $("#model-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    }
+
+   //型号
+    if(initData.model != ""){
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "issues",
+                model: initData.model
+            },
+            success: function(res){
+                $("#issue-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    if(i != ""){
+                       $("#issue-popup .form-popup-content ul").append('<li><a class="'+i.toLowerCase()+'" href="#'+i+'" data="quote-issue"><span>' + i + '</span></a></li>');
+                    }
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    };
+
+    //问题不为空
+    if(initData.state != ""){
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "stores",
+                state: initData.state
+            },
+            success: function(res){
+                $("#store-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    };
+
+    //
+    $.ajax({
+        url: url,
+        method: "POST",
+        data: {
+            act: "brands"
+        },
+        success: function(res){
+            res= $.parseJSON(res)
+            $.map(res ,function(i){
+                $("#brand-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-brand">'+i+'</a></li>');
+            });
+        },
+        error: function(res){
+            console.log(res);
+        }
+    });
+
+
+    $.ajax({
+        url: url,
+        method: "POST",
+        data: {
+            act: "state"
+        },
+        success: function(res){
+            res= $.parseJSON(res);
+            res.map(function(i){
+                $("#state-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-state">'+i+'</a></li>');
+                
+            });
+            state_user_distance( res.length );
+        },
+        error: function(res){
+            console.log(res);
+        }
+    });
+
+   
+
+    $(document).on("click", "#brand-popup .form-popup-content ul li a", function(e){
+        e.preventDefault();
+        var p = $(this).attr("data");
+        var v = $(this).text();
+        $("#"+p).val(v);
+        $("input#quote-model").val("");
+        $("input#quote-issue").val("");
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "models",
+                brand: v
+            },
+            success: function(res){
+                $("#model-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    });
+
+
+    $(document).on("click", "#model-popup .form-popup-content ul li a", function(e){
+        e.preventDefault();
+        var p = $(this).attr("data");
+        var v = $(this).text();
+        $("#"+p).val(v);
+        $("input#quote-issue").val("");
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "issues",
+                model: v
+            },
+            success: function(res){
+                $("#issue-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    if(i != ""){
+                        $("#issue-popup .form-popup-content ul").append('<li class="'+i.toLowerCase()+'"><a href="#'+i+'" class="'+i.toLowerCase()+'" data="quote-issue">' + '<span>' + i + '</span>' + '</a></li>');
+                    }
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    });
+
+    $(document).on("click", "#state-popup .form-popup-content ul li a", function(e){
+      
+      
+      var p = $(this).attr("data");
+      var v = $(this).text();
+      $("#"+p).val(v);
+      
+      store_user_distance( v );
+        // e.preventDefault();
+        // var p = $(this).attr("data");
+        // var v = $(this).text();
+        // $("#"+p).val(v);
+        // $("input#quote-store").val("");
+        // $(".form-overlap").removeClass("show");
+        // $(".form-popup").removeClass("show");
+        // $("body").removeClass("noScroll");
+        // $("html").removeClass("noScroll");
+        // $.ajax({
+            // url: url,
+            // method: "POST",
+            // data: {
+                // act: "stores",
+                // state: v
+            // },
+            // success: function(res){
+                // $("#store-popup .form-popup-content ul").empty();
+                // res.map(function(i){
+                    // $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                    	// geocode();
+			
+			// function geocode() {
+				// var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+				// var store_address = i.shopping_centre;
+				// store_address = store_address.replace(/\s+/g, '+');
+				// var mapsAPI = "AIzaSyBLXDcnm6uPuikLnYlOqgPYyWyK2kjX2n0"
+				// var location = mapsURL + store_address + '/' + mapsAPI;
+				// $.get(location, {
+					// params: {
+						// address: location
+					// }
+				// })
+				// .done(function(response){
+					// console.log('Latitude: ' + response.results[0].geometry.location.lat + ', Longitude: ' + response.results[0].geometry.location.lng);
+					// console.log(response);
+				// })
+			// } 
+			
+                // });
+            // },
+            // error: function(res){
+                // console.log(res);
+            // }
+        // });
+    });
+
+    $(document).on("click", "#issue-popup .form-popup-content ul li a", function(e){
+		if(!$(this).hasClass('others')) {
+			e.preventDefault();	
+		}
+		
+        var p = $(this).attr("data");
+        var v = $(this).text();
+        $("#"+p).val(v);
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+    });
+
+    $(document).on("click", "#store-popup .form-popup-content ul li a", function(e){
+        e.preventDefault();
+        var p = $(this).attr("data");
+        var storeId = $(this).attr("storeid");
+        var v = $(this).text();
+        $("#"+p).val(v);
+        $("#store_id").val(storeId);
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+    });
+
+    $("#quote-brand-overlay").click(function(){
+        $(".form-overlap").addClass("show");
+        $("#brand-popup").addClass("show");
+        $("html").addClass("noScroll");
+        $("body").addClass("noScroll");
+    });
+
+
+    $("#quote-model-overlay").click(function(){
+        $(".form-overlap").addClass("show");
+        $("#model-popup").addClass("show");
+        $("html").addClass("noScroll");
+        $("body").addClass("noScroll");
+    });
+
+    $("#quote-issue-overlay").click(function(){
+        $(".form-overlap").addClass("show");
+        $("#issue-popup").addClass("show");
+        $("html").addClass("noScroll");
+        $("body").addClass("noScroll");
+    });
+
+
+    $("#quote-state-overlay").click(function(){
+        $(".form-overlap").addClass("show");
+        $("#state-popup").addClass("show");
+        $("html").addClass("noScroll");
+        $("body").addClass("noScroll");
+    });
+
+
+    $("#quote-store-overlay").click(function(){
+        $(".form-overlap").addClass("show");
+        $("#store-popup").addClass("show");
+        $("html").addClass("noScroll");
+        $("body").addClass("noScroll");
+    });
+
+
+    $("#brand-popup-input").on("keyup", function(e){
+        myFilter("#brand-popup");
+    });
+
+    $("#state-popup-input").on("keyup", function(e){
+        myFilter("#state-popup");
+    });
+
+    $("#model-popup-input").on("keyup", function(e){
+        myFilter("#model-popup");
+    });
+
+    $("#issue-popup-input").on("keyup", function(e){
+        myFilter("#issue-popup");
+    });
+
+    $("#store-popup-input").on("keyup", function(e){
+        myFilter("#store-popup");
+    });
+			/* if (navigator.geolocation) {
+			
+				navigator.geolocation.getCurrentPosition(sortResults);
+			
+			} else {
+			
+				console.log( "Geolocation is not supported by this browser.");
+			
+			}
+			
+			function sortResults(position) {
+				// Grab current position
+				var latlon = new LatLon(position.coords.latitude, position.coords.longitude);
+				
+				var locations = document.getElementById('store-list');
+				var locationList = locations.querySelectorAll('li');
+				var locationArray = Array.prototype.slice.call(locationList, 0);
+				
+				locationArray.sort(function(a,b){
+					var locA  = a.getAttribute('data-latlon').split(',');
+					var locB  = b.getAttribute('data-latlon').split(',');
+					
+					distA = latlon.distanceTo(new LatLon(Number(locA[0]),Number(locA[1])));
+					distB = latlon.distanceTo(new LatLon(Number(locB[0]),Number(locB[1])));
+					return distA - distB;
+				});
+				
+				//Reorder the list
+				locations.innerHTML = "";
+				locationArray.forEach(function(el) {
+					locations.appendChild(el);
+				});
+			
+			};	*/
+  
+  function state_user_distance ( counter ) {
+    var direction_urls_array = [];
+     
+    var user_latitude = jQuery( "input.user_latitude" ).val();
+    var user_longitude = jQuery( "input.user_longitude" ).val();
+    
+    var list_count = jQuery( "#state-popup .form-popup-content ul li" ).length;
+    $( "#state-popup .form-popup-content ul li" ).each( function( index, value){
+        // var p = $(this).find('a').attr("data");
+        var v = $(this).find('a').text();
+        // $("#"+p).val(v);
+        // $("input#quote-store").val("");
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+                        
+        var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+        var store_address = v;
+        store_address = store_address.replace(/\s+/g, '+');
+        var mapsAPI = "AIzaSyC9eMKA1RPjjEqkth8IFUy-guxkPF7KTIY";
+        var location = mapsURL + store_address + '/' + mapsAPI;
+        
+        $.get(location, {
+          params: {
+            address: location
+          }
+        }).done(function(response){
+          // console.log( response );
+          if (response.results.length > 0) {                        
+            var store_latitude = response.results[0].geometry.location.lat;
+            var store_longitude = response.results[0].geometry.location.lng
+            
+            var url = "http://maps.googleapis.com/maps/api/directions/json?origin="+ user_latitude +","+ user_longitude +"&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+            // var url = "http://maps.googleapis.com/maps/api/directions/json?origin=-32.750957,145.5619689&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+          } else {
+            var url = "NOTAVAILABLE";
+          }
+          
+          direction_urls_array.push({
+            title: v,
+            link:  url
+          });
+          
+          var array_count = direction_urls_array.length;
+          if ( counter == array_count ) {
+            state_distance_sort( direction_urls_array );
+          }
+        })
+    } ) 
+  }
+  
+  function store_user_distance ( v ) {
+    var direction_urls_array = []; 
+     
+    var user_latitude = jQuery( "input.user_latitude" ).val();
+    var user_longitude = jQuery( "input.user_longitude" ).val();
+    
+    var list_count = jQuery( "#state-popup .form-popup-content ul li" ).length;
+    $( "#state-popup .form-popup-content ul li" ).each( function(){
+        // var p = $(this).find('a').attr("data");
+        // var v = $(this).find('a').text();
+        // $("#"+p).val(v);
+        // $("input#quote-store").val("");
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "stores",
+                state: v
+            },
+            success: function(res){
+                list_count = res.length;
+                $("#store-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    // console.log( i.shopping_centre );
+                    $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                    geocode();
+      
+                  function geocode() {
+                    var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+                    var store_address = i.shopping_centre;
+                    store_address = store_address.replace(/\s+/g, '+');
+                    var mapsAPI = "AIzaSyC9eMKA1RPjjEqkth8IFUy-guxkPF7KTIY";
+                    var location = mapsURL + store_address + '/' + mapsAPI;
+                    $.get(location, {
+                      params: {
+                        address: location
+                      }
+                    }).done(function(response){
+                      // console.log( response );
+                      if (response.results.length > 0) {                        
+                        var store_latitude = response.results[0].geometry.location.lat;
+                        var store_longitude = response.results[0].geometry.location.lng
+                        
+                        var url = "http://maps.googleapis.com/maps/api/directions/json?origin="+ user_latitude +","+ user_longitude +"&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+                        // var url = "http://maps.googleapis.com/maps/api/directions/json?origin=-32.750957,145.5619689&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+                                  
+                        
+                      } else {
+                        var url = "NOTAVAILABLE";
+                      }
+                      
+                      direction_urls_array.push({
+                        title: i.shopping_centre, 
+                        store_id:  i.store_id,
+                        link:  url
+                      });
+                        
+                      var array_count = direction_urls_array.length;
+                      
+                      if ( array_count == list_count ) {
+                        store_distance_sort( direction_urls_array );
+                      }
+                    })
+                  } 
+      
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
+    } ) 
+  }
+  
+  function state_distance_sort ( direction_urls_array ) {
+    var direction_urls = direction_urls_array;
+    var site_url = window.location.origin;
+    jQuery.ajax({
+      type: "POST",
+      url: site_url + '/wp-content/themes/happytel/custom-ajax-functions.php',
+      data:{
+      'type' : 'state_sort_distance',
+      'direction_urls' : direction_urls,
+      },
+
+      success: function ( data ) {
+        // jQuery( "#state-popup .form-popup-content ul" ).empty().append( data );
+        // var first_option = jQuery( "#state-popup .form-popup-content ul li" ).first().text();
+        // jQuery( "#quote-state" ).val( first_option );
+        // store_user_distance( first_option );
+        jQuery( '#quote-form' ).removeClass( 'loading' );
+      },
+      error: function ( data ) {
+        console.log('error');
+      }
+    } );
+  }
+  
+  function store_distance_sort ( direction_urls_array ) {
+    var direction_urls = direction_urls_array;
+    var site_url = window.location.origin;
+    jQuery.ajax({
+      type: "POST",
+      url: site_url + '/wp-content/themes/happytel/custom-ajax-functions.php',
+      data:{
+      'type' : 'store_sort_distance',
+      'direction_urls' : direction_urls,
+      },
+
+      success: function ( data ) {
+        // jQuery( "#store-popup .form-popup-content ul" ).empty().append( data );
+        // var first_option = jQuery( "#store-popup .form-popup-content ul li" ).first().text();
+        // jQuery( "#quote-store" ).val( first_option );
+        jQuery( '#quote-form' ).removeClass( 'loading' );
+      },
+      error: function ( data ) {
+        console.log('error');
+      }
+    } );
+  }
+});
+
+</script>
+
+
+
+<!--
+ <script>
+   $(document).ready(function(){
+                        var  url = "{:url('api/phoneinfo/index')}";
+                        var initData = {
+                            brand: "",
+                            model: "",
+                            issue: "",
+                            state: "",
+                            store: "",
+                            storeId: ""
+                        };
+
+                        //品牌
+                        $("#quote-brand-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#brand-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+                        //型号
+                        $("#quote-model-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#model-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+                        //故障
+                        $("#quote-issue-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#issue-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+                        //地区
+                        $("#quote-state-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#state-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+                        //商店
+                        $("#quote-store-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#store-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+                        //搜出品牌
+                        $.ajax({
+                            url: url,
+                            method: "POST",
+                            data: {
+                                act: "brands"
+                            },
+                            success: function(res){
+                                $.each(res,function(i,item){
+                                    $("#brand-popup .form-popup-content ul").append('<li><a href="#'+item+'" data="quote-brand">'+item+'</a></li>');
+                                });
+                            },
+                            error: function(res){
+                                console.log(res);
+                            }
+                        });
+
+
+
+                    });
+</script>
+-->
+
+  </div>
+        </div>
+    </div>
+    <div class="quote-footer">
+        <div class="site-inner">
+            <div class="quote-footer-inner">
+                <div id="q1" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>130,000 devices repaired annually</h3>
+                        <p>Being Australia’s largest independent retailer for over 20 years, we are the most experienced technicians around. Your device will be safe with us.</p>
+                    </div>
+                </div>
+                <div id="q2" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>6 month Australia and New Zealand wide warranty</h3>
+                        <p>For your peace of mind, all of our repairs come with a 6 month warranty</p>
+                    </div>
+                </div>
+                <div id="q3" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>A+ quality parts</h3>
+                        <p>Our parts are sourced only from the world’s leading manufacturers to ensure the highest available quality in the market.</p>
+                    </div>
+                </div>
+                <div id="q4" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>Trained repair technicians</h3>
+                        <p>Every one of our technicians across Australia and New Zealand are certified graduates of repairs.</p>
+                    </div>
+                </div>
+                <div id="q5" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>Quick turnaround</h3>
+                        <p>We're not just the safest, but also the fastest repairers out there.</p>
+                    </div>
+                </div>
+                <div id="q6" class="quote-footer-block">
+                    <div class="quote-block-inner">
+                        <h3>School & Business Services</h3>
+                        <p>Are you a school or business in need of a repair? Contact us to see what deals are on offer for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+
+</body>
+</html>

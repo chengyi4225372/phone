@@ -97,7 +97,8 @@
                     <div class="quote-result-left">
                         <h3>Estimated Cost:</h3>
                         <div class="est-block">
-                            <p class="est-price test">$549.00</p>                        </div>
+                            <p class="est-price test">{$data.price|default="暂时没有报价！"}</p>
+                        </div>
                         <div class="est-text">
                             <p>Please note this is only an estimate. We advise you to take your phone or tablet to the repair stores listed below for an inspection and proper quotation.</p>
                         </div>
@@ -113,7 +114,7 @@
                             <h3><i class="icon-icons-timer"></i> <span>Limited Offer</span></h3>
                             <h4>Get a free portable battery</h4>
                             <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
-                            <a id="booknow-btn" href="/book-now?phone_field=Galaxy S9 Plus&issue_field=Screen Replacement&price_field1=549.00&price_field2=&state_field=VIC&centre_field=Westfield Knox Shopping Centre" class="white-btn">BOOK NOW</a>
+                            <a id="booknow-btn" href="{:url('index/book_now')}" class="white-btn">BOOK NOW</a>
                         </div>
                         <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
                     </div>

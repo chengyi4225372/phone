@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-03-16 18:21:56
+Date: 2019-03-18 18:19:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -385,22 +385,6 @@ INSERT INTO `state` VALUES ('0000000003', '广州', '2019-03-16 17:08:57');
 INSERT INTO `state` VALUES ('0000000004', '深圳', '2019-03-16 17:09:27');
 
 -- ----------------------------
--- Table structure for `state_store`
--- ----------------------------
-DROP TABLE IF EXISTS `state_store`;
-CREATE TABLE `state_store` (
-  `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `state` varchar(255) NOT NULL COMMENT '地区',
-  `store` varchar(255) NOT NULL COMMENT '商店',
-  `sid` int(255) unsigned NOT NULL COMMENT '地区关联商店id',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of state_store
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `store`
 -- ----------------------------
 DROP TABLE IF EXISTS `store`;
@@ -524,7 +508,7 @@ CREATE TABLE `system_log` (
   `content` text NOT NULL COMMENT '操作内容描述',
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8 COMMENT='系统操作日志表';
 
 -- ----------------------------
 -- Records of system_log
@@ -770,6 +754,8 @@ INSERT INTO `system_log` VALUES ('238', '127.0.0.1', 'admin/login/index', 'admin
 INSERT INTO `system_log` VALUES ('239', '127.0.0.1', 'admin/login/index', 'admin', '系统管理', '用户登录系统成功', '2019-03-15 18:08:40');
 INSERT INTO `system_log` VALUES ('240', '127.0.0.1', 'admin/login/index', 'admin', '系统管理', '用户登录系统成功', '2019-03-16 09:22:25');
 INSERT INTO `system_log` VALUES ('241', '127.0.0.1', 'admin/login/index', 'admin', '系统管理', '用户登录系统成功', '2019-03-16 14:05:44');
+INSERT INTO `system_log` VALUES ('242', '127.0.0.1', 'admin/login/index', 'admin', '系统管理', '用户登录系统成功', '2019-03-18 09:21:39');
+INSERT INTO `system_log` VALUES ('243', '127.0.0.1', 'admin/login/index', 'admin', '系统管理', '用户登录系统成功', '2019-03-18 12:06:09');
 
 -- ----------------------------
 -- Table structure for `system_menu`
@@ -1004,11 +990,15 @@ DROP TABLE IF EXISTS `zhen_title`;
 CREATE TABLE `zhen_title` (
   `id` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `names` varchar(255) NOT NULL,
+  `sort` int(10) unsigned NOT NULL COMMENT '排序 数字越大 与靠前',
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zhen_title
 -- ----------------------------
-INSERT INTO `zhen_title` VALUES ('0000000001', '屏幕显示', '2019-03-16 15:14:11');
+INSERT INTO `zhen_title` VALUES ('0000000001', '屏幕显示', '30', '2019-03-18 14:46:33');
+INSERT INTO `zhen_title` VALUES ('0000000002', '电池', '0', '2019-03-18 14:26:38');
+INSERT INTO `zhen_title` VALUES ('0000000003', '充电口', '30', '2019-03-18 14:46:22');
+INSERT INTO `zhen_title` VALUES ('0000000004', '音量', '50', '2019-03-18 14:46:09');

@@ -45,7 +45,7 @@ class Index extends Common {
         return $this->view->fetch();
     }
 
-    //金额 对应 具体详情
+    //金额 对应 具体详情 todo 后期优化
     public function quote_result(){
         if(request()->isPost()){
             $data = array();
@@ -56,10 +56,18 @@ class Index extends Common {
             $data["state"] = input('post.state');
             $data["store"] = input('post.store');
             //查询费用
-
-
+            $pid =Db::name('phone_pai')->where('pai',$data['brand'])->value('id');
+            $mid = Db::name('phone_models')->where('models',$data['model'])->where('pid',$pid)->value('id');
+            $cid =Db::name('zhen_title')->where('names',$data['issue'])->value('id');
+            $where = array('pid'=>$pid,'mid'=>$mid,'cid'=>$cid);
+            $data['price']= Db::name('phone_money')->where($where)->value('money');
             $this->assign('data',$data);
         }
+        return $this->view->fetch();
+    }
+
+    //表单提交信息页面
+    public function book_now(){
         return $this->view->fetch();
     }
 

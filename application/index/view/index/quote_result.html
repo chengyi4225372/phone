@@ -1,0 +1,941 @@
+{include file="public/header" /}
+
+{include file="public/top_null" /}
+
+<header id="mobile-header" class="site-header" role="banner">
+    <div class="mobile-header-top">
+        <div class="site-inner-big">
+            <div class="mobile-site-header-main">
+                <div class="header-search">
+                    <!-- <div class="header-search-block">
+                        <a href="#" id="header-search-toggle"><i class="icon-icons-search"></i></a>
+                    </div>  -->
+                </div>
+                <div class="site-branding">
+                    <a href="/">
+                        <img src="__STATIC__/home/wp-content/themes/happytel/images/logo.png" alt="HappyTel">
+                    </a>
+                </div>
+                <div class="mobile-btn">
+                    <a href="#" id="mm-toggle"><i class="icon-icons-menu"></i></a>
+                </div>
+            </div><!-- .site-header-main -->
+        </div>
+    </div>
+    <div class="mobile-header-bottom">
+        <div class="header-quote">
+            <span>I would like to repair my device</span> <a href="https://www.happytel.com/online-quote/" class="btn">Get a quote</a>
+        </div>
+    </div>
+    <div id="mobile-menu-block" class="site-header-menu">
+        <div class="menu-main-menu-container">
+            <ul class="primary-mobile-menu">
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/contact-us/">
+                        <i class="icon-icons-shop"></i>
+                        <h3>Contact Us</h3>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/self-diagnosis/">
+                        <i class="icon-icons-screen-damage"></i>
+                        <h3>Self Diagnosis</h3>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/online-quote/">
+                        <i class="icon-icons-business"></i>
+                        <h3>Online Quote</h3>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/about-us/">
+                        <i class="icon-icons-happytel"></i>
+                        <h3>About Us</h3>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/career-opportunities/">
+                        <i class="icon-icons-suitcase"></i>
+                        <h3>Careers</h3>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="https://www.happytel.com/store-locator/">
+                        <i class="icon-icons-pin"></i>
+                        <h3>Store Locator</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="menu-footer">
+            <ul>
+                <li><a href="https://www.facebook.com/behappytel/"><i class="icon-icons-facebook"></i> Facebook</a></li>
+            </ul>
+        </div>
+    </div>
+</header><!-- .site-header -->
+<div class="quote-result-heading">
+    <div class="site-inner">
+        <ul>
+            <li><span>{$data.brand}</span></li>
+            <li><span>{$data.model}</span></li>
+            <li><span>{$data.issue}</span></li>
+        </ul>
+    </div>
+</div>
+<div class="default-page quoteResult-page">
+    <div class="page-header">
+        <div class="site-inner">
+            <!-- <h2 class="page-title">Your quote</h2> -->
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="site-inner">
+            <div class="quote-result-block">
+                <div class="flex-row">
+                    <div class="quote-result-left">
+                        <h3>Estimated Cost:</h3>
+                        <div class="est-block">
+                            <p class="est-price test">$549.00</p>                        </div>
+                        <div class="est-text">
+                            <p>Please note this is only an estimate. We advise you to take your phone or tablet to the repair stores listed below for an inspection and proper quotation.</p>
+                        </div>
+                    </div>
+                    <div class="quote-result-right">
+                        <!-- <div class="quote-result-right-inner">
+                            <div class="quote-alter">
+                                <a href="#" id="est-alter">Change details<span>&gt;</span></a>
+                            </div>
+
+                                                    </div> -->
+                        <div class="quote-offer">
+                            <h3><i class="icon-icons-timer"></i> <span>Limited Offer</span></h3>
+                            <h4>Get a free portable battery</h4>
+                            <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
+                            <a id="booknow-btn" href="/book-now?phone_field=Galaxy S9 Plus&issue_field=Screen Replacement&price_field1=549.00&price_field2=&state_field=VIC&centre_field=Westfield Knox Shopping Centre" class="white-btn">BOOK NOW</a>
+                        </div>
+                        <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
+                    </div>
+                </div>
+            </div>
+             <!-- 这个表单可能无用，以及下面的 ajax-->
+            <div id="form-alter" class="page-content-block">
+                <form id="quote-form" action="https://www.happytel.com/quote-result/" method="post">
+                    <input type="hidden" name="store_id" id="store_id" value="306"/>
+                    <div class="form-row-1">
+                        <span>I would like to repair my </span>
+                        <span class="search-input-wrapper">
+            <span id="quote-brand-overlay" class="search-input-overlap"></span>
+            <input id="quote-brand" class="search-input" type="text" value="Samsung" name="brand" placeholder="Apple" required/>
+        </span>
+                        <span> model </span>
+                        <span class="search-input-wrapper">
+            <span id="quote-model-overlay" class="search-input-overlap"></span>
+            <input id="quote-model" type="text" class="search-input" value="Galaxy S9 Plus" name="model" placeholder="iPhone" required />
+        </span>
+                    </div>
+                    <div class="form-row">
+                        <label for="quote-issue">Issue</label>
+                        <span class="search-input-wrapper block">
+            <span id="quote-issue-overlay" class="search-input-overlap"></span>
+            <input type="text" id="quote-issue" name="issue" value="Screen Replacement" class="search-input" required />
+        </span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-row-state">
+                            <label for="quote-state">State</label>
+                            <span class="search-input-wrapper block">
+                <span id="quote-state-overlay" class="search-input-overlap"></span>
+                <input type="text" id="quote-state" value="VIC" name="state" required />
+            </span>
+                        </div>
+                        <div class="form-row-store">
+                            <label for="quote-store">Store</label>
+                            <span class="search-input-wrapper block">
+                <span id="quote-store-overlay" class="search-input-overlap"></span>
+                <input type="text" id="quote-store" name="store" value="Westfield Knox Shopping Centre" required />
+            </span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <input type="submit" class="btn" value="Get a quote"/>
+                    </div>
+                </form>
+
+                <div class="form-popup" id="brand-popup">
+                    <div class="form-popup-header">
+                        <input type="text" id="brand-popup-input" placeholder="Search for brand"/>
+                    </div>
+                    <div class="form-popup-content">
+                        <ul></ul>
+                        <p class="other-link"><a href="/contact-us/">Other <span>(Please Contact for Custom Quote)</span></a></p>
+                    </div>
+                </div>
+                <div class="form-popup" id="model-popup">
+                    <div class="form-popup-header">
+                        <input type="text" id="model-popup-input" placeholder="Search for model"/>
+                    </div>
+                    <div class="form-popup-content">
+                        <ul></ul>
+                        <p class="other-link"><a href="/contact-us/">Other <span>(Please Contact for Custom Quote)</span></a></p>
+                    </div>
+                </div>
+                <div class="form-popup" id="issue-popup">
+                    <!-- <div class="form-popup-header">
+                        <input type="text" id="issue-popup-input" placeholder="Search for issue"/>
+                    </div> -->
+                    <div class="form-popup-content">
+                        <ul></ul>
+                        <p class="other-link"><a class="others" href="/contact-us/">Other <span>(Please Contact for Custom Quote)</span></a></p>
+                    </div>
+                </div>
+                <div class="form-popup" id="state-popup">
+                    <div class="form-popup-header">
+                        <input type="text" id="state-popup-input" placeholder="Search for state"/>
+                    </div>
+                    <div class="form-popup-content">
+                        <ul></ul>
+                    </div>
+                </div>
+                <div class="form-popup" id="store-popup">
+                    <div class="form-popup-header">
+                        <input type="text" id="store-popup-input" placeholder="Search for store"/>
+                    </div>
+                    <div class="form-popup-content">
+                        <ul id="store-list"></ul>
+                    </div>
+                </div>
+                <input type="hidden" class="user_latitude" />
+                <input type="hidden" class="user_longitude" />
+                <script>
+                    jQuery(document).ready(function($){
+                        var url = "https://www.happytel.com/wp-content/themes/happytel/MobileRepairAPI.php";
+                        var initData = {
+                            brand: "Samsung",
+                            model: "Galaxy S9 Plus",
+                            issue: "Screen Replacement",
+                            state: "VIC",
+                            store: "Westfield Knox Shopping Centre",
+                            storeId: "306"
+                        };
+
+                        /*  GEO IP
+                        ============================== */
+
+                        if (navigator.geolocation) {
+
+                            navigator.geolocation.getCurrentPosition(showPosition);
+
+                        } else {
+                            console.log( "Geolocation is not supported by this browser.");
+
+                        }
+
+                        function showPosition(position) {
+                            jQuery( '#quote-form' ).addClass( 'loading' );
+                            var user_latitude = position.coords.latitude;
+                            var user_longitude = position.coords.longitude;
+
+                            jQuery( "input.user_latitude" ).val( user_latitude );
+                            jQuery( "input.user_longitude" ).val( user_longitude );
+                        }
+
+                        function myFilter(popup){
+                            var inputEle = $(popup+" .form-popup-header input"),
+                                filter = inputEle.val().toUpperCase(),
+                                ulEle = $(popup+" .form-popup-content ul"),
+                                li = ulEle.find("li");
+
+                            for (i = 0; i < li.length; i++) {
+                                a = li[i].getElementsByTagName("a")[0];
+                                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    li[i].style.display = "";
+                                } else {
+                                    li[i].style.display = "none";
+                                }
+                            }
+                        }
+
+                        if(initData.brand != ""){
+                            $.ajax({
+                                url: url,
+                                method: "POST",
+                                data: {
+                                    act: "models",
+                                    brand: initData.brand
+                                },
+                                success: function(res){
+                                    $("#model-popup .form-popup-content ul").empty();
+                                    res.map(function(i){
+                                        $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                                    });
+                                },
+                                error: function(res){
+                                    console.log(res);
+                                }
+                            });
+                        }
+
+                        if(initData.model != ""){
+                            $.ajax({
+                                url: url,
+                                method: "POST",
+                                data: {
+                                    act: "issues",
+                                    model: initData.model
+                                },
+                                success: function(res){
+                                    $("#issue-popup .form-popup-content ul").empty();
+                                    res.map(function(i){
+                                        if(i != ""){
+                                            $("#issue-popup .form-popup-content ul").append('<li><a class="'+i.toLowerCase()+'" href="#'+i+'" data="quote-issue"><span>' + i + '</span></a></li>');
+                                        }
+                                    });
+                                },
+                                error: function(res){
+                                    console.log(res);
+                                }
+                            });
+                        };
+
+                        if(initData.state != ""){
+                            $.ajax({
+                                url: url,
+                                method: "POST",
+                                data: {
+                                    act: "stores",
+                                    state: initData.state
+                                },
+                                success: function(res){
+                                    $("#store-popup .form-popup-content ul").empty();
+                                    res.map(function(i){
+                                        $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                                    });
+                                },
+                                error: function(res){
+                                    console.log(res);
+                                }
+                            });
+                        };
+
+                        $.ajax({
+                            url: url,
+                            method: "POST",
+                            data: {
+                                act: "brands"
+                            },
+                            success: function(res){
+                                res.map(function(i){
+                                    $("#brand-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-brand">'+i+'</a></li>');
+                                });
+                            },
+                            error: function(res){
+                                console.log(res);
+                            }
+                        });
+
+                        $.ajax({
+                            url: url,
+                            method: "POST",
+                            data: {
+                                act: "state"
+                            },
+                            success: function(res){
+                                res.map(function(i){
+                                    $("#state-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-state">'+i+'</a></li>');
+
+                                });
+                                state_user_distance( res.length );
+                            },
+                            error: function(res){
+                                console.log(res);
+                            }
+                        });
+
+
+
+                        $(document).on("click", "#brand-popup .form-popup-content ul li a", function(e){
+                            e.preventDefault();
+                            var p = $(this).attr("data");
+                            var v = $(this).text();
+                            $("#"+p).val(v);
+                            $("input#quote-model").val("");
+                            $("input#quote-issue").val("");
+                            $(".form-overlap").removeClass("show");
+                            $(".form-popup").removeClass("show");
+                            $("body").removeClass("noScroll");
+                            $("html").removeClass("noScroll");
+                            $.ajax({
+                                url: url,
+                                method: "POST",
+                                data: {
+                                    act: "models",
+                                    brand: v
+                                },
+                                success: function(res){
+                                    $("#model-popup .form-popup-content ul").empty();
+                                    res.map(function(i){
+                                        $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                                    });
+                                },
+                                error: function(res){
+                                    console.log(res);
+                                }
+                            });
+                        });
+
+
+                        $(document).on("click", "#model-popup .form-popup-content ul li a", function(e){
+                            e.preventDefault();
+                            var p = $(this).attr("data");
+                            var v = $(this).text();
+                            $("#"+p).val(v);
+                            $("input#quote-issue").val("");
+                            $(".form-overlap").removeClass("show");
+                            $(".form-popup").removeClass("show");
+                            $("body").removeClass("noScroll");
+                            $("html").removeClass("noScroll");
+                            $.ajax({
+                                url: url,
+                                method: "POST",
+                                data: {
+                                    act: "issues",
+                                    model: v
+                                },
+                                success: function(res){
+                                    $("#issue-popup .form-popup-content ul").empty();
+                                    res.map(function(i){
+                                        if(i != ""){
+                                            $("#issue-popup .form-popup-content ul").append('<li class="'+i.toLowerCase()+'"><a href="#'+i+'" class="'+i.toLowerCase()+'" data="quote-issue">' + '<span>' + i + '</span>' + '</a></li>');
+                                        }
+                                    });
+                                },
+                                error: function(res){
+                                    console.log(res);
+                                }
+                            });
+                        });
+
+                        $(document).on("click", "#state-popup .form-popup-content ul li a", function(e){
+
+
+                            var p = $(this).attr("data");
+                            var v = $(this).text();
+                            $("#"+p).val(v);
+
+                            store_user_distance( v );
+                            // e.preventDefault();
+                            // var p = $(this).attr("data");
+                            // var v = $(this).text();
+                            // $("#"+p).val(v);
+                            // $("input#quote-store").val("");
+                            // $(".form-overlap").removeClass("show");
+                            // $(".form-popup").removeClass("show");
+                            // $("body").removeClass("noScroll");
+                            // $("html").removeClass("noScroll");
+                            // $.ajax({
+                            // url: url,
+                            // method: "POST",
+                            // data: {
+                            // act: "stores",
+                            // state: v
+                            // },
+                            // success: function(res){
+                            // $("#store-popup .form-popup-content ul").empty();
+                            // res.map(function(i){
+                            // $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                            // geocode();
+
+                            // function geocode() {
+                            // var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+                            // var store_address = i.shopping_centre;
+                            // store_address = store_address.replace(/\s+/g, '+');
+                            // var mapsAPI = "AIzaSyBLXDcnm6uPuikLnYlOqgPYyWyK2kjX2n0"
+                            // var location = mapsURL + store_address + '/' + mapsAPI;
+                            // $.get(location, {
+                            // params: {
+                            // address: location
+                            // }
+                            // })
+                            // .done(function(response){
+                            // console.log('Latitude: ' + response.results[0].geometry.location.lat + ', Longitude: ' + response.results[0].geometry.location.lng);
+                            // console.log(response);
+                            // })
+                            // }
+
+                            // });
+                            // },
+                            // error: function(res){
+                            // console.log(res);
+                            // }
+                            // });
+                        });
+
+                        $(document).on("click", "#issue-popup .form-popup-content ul li a", function(e){
+                            if(!$(this).hasClass('others')) {
+                                e.preventDefault();
+                            }
+
+                            var p = $(this).attr("data");
+                            var v = $(this).text();
+                            $("#"+p).val(v);
+                            $(".form-overlap").removeClass("show");
+                            $(".form-popup").removeClass("show");
+                            $("body").removeClass("noScroll");
+                            $("html").removeClass("noScroll");
+                        });
+
+                        $(document).on("click", "#store-popup .form-popup-content ul li a", function(e){
+                            e.preventDefault();
+                            var p = $(this).attr("data");
+                            var storeId = $(this).attr("storeid");
+                            var v = $(this).text();
+                            $("#"+p).val(v);
+                            $("#store_id").val(storeId);
+                            $(".form-overlap").removeClass("show");
+                            $(".form-popup").removeClass("show");
+                            $("body").removeClass("noScroll");
+                            $("html").removeClass("noScroll");
+                        });
+
+                        $("#quote-brand-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#brand-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+
+                        $("#quote-model-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#model-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+                        $("#quote-issue-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#issue-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+
+                        $("#quote-state-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#state-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+
+                        $("#quote-store-overlay").click(function(){
+                            $(".form-overlap").addClass("show");
+                            $("#store-popup").addClass("show");
+                            $("html").addClass("noScroll");
+                            $("body").addClass("noScroll");
+                        });
+
+
+                        $("#brand-popup-input").on("keyup", function(e){
+                            myFilter("#brand-popup");
+                        });
+
+                        $("#state-popup-input").on("keyup", function(e){
+                            myFilter("#state-popup");
+                        });
+
+                        $("#model-popup-input").on("keyup", function(e){
+                            myFilter("#model-popup");
+                        });
+
+                        $("#issue-popup-input").on("keyup", function(e){
+                            myFilter("#issue-popup");
+                        });
+
+                        $("#store-popup-input").on("keyup", function(e){
+                            myFilter("#store-popup");
+                        });
+
+
+
+                        /* if (navigator.geolocation) {
+
+                            navigator.geolocation.getCurrentPosition(sortResults);
+
+                        } else {
+
+                            console.log( "Geolocation is not supported by this browser.");
+
+                        }
+
+                        function sortResults(position) {
+                            // Grab current position
+                            var latlon = new LatLon(position.coords.latitude, position.coords.longitude);
+
+                            var locations = document.getElementById('store-list');
+                            var locationList = locations.querySelectorAll('li');
+                            var locationArray = Array.prototype.slice.call(locationList, 0);
+
+                            locationArray.sort(function(a,b){
+                                var locA  = a.getAttribute('data-latlon').split(',');
+                                var locB  = b.getAttribute('data-latlon').split(',');
+
+                                distA = latlon.distanceTo(new LatLon(Number(locA[0]),Number(locA[1])));
+                                distB = latlon.distanceTo(new LatLon(Number(locB[0]),Number(locB[1])));
+                                return distA - distB;
+                            });
+
+                            //Reorder the list
+                            locations.innerHTML = "";
+                            locationArray.forEach(function(el) {
+                                locations.appendChild(el);
+                            });
+
+                        };	*/
+
+                        function state_user_distance ( counter ) {
+                            var direction_urls_array = [];
+
+                            var user_latitude = jQuery( "input.user_latitude" ).val();
+                            var user_longitude = jQuery( "input.user_longitude" ).val();
+
+                            var list_count = jQuery( "#state-popup .form-popup-content ul li" ).length;
+                            $( "#state-popup .form-popup-content ul li" ).each( function( index, value){
+                                // var p = $(this).find('a').attr("data");
+                                var v = $(this).find('a').text();
+                                // $("#"+p).val(v);
+                                // $("input#quote-store").val("");
+                                $(".form-overlap").removeClass("show");
+                                $(".form-popup").removeClass("show");
+                                $("body").removeClass("noScroll");
+                                $("html").removeClass("noScroll");
+
+                                var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+                                var store_address = v;
+                                store_address = store_address.replace(/\s+/g, '+');
+                                var mapsAPI = "AIzaSyC9eMKA1RPjjEqkth8IFUy-guxkPF7KTIY";
+                                var location = mapsURL + store_address + '/' + mapsAPI;
+
+                                $.get(location, {
+                                    params: {
+                                        address: location
+                                    }
+                                }).done(function(response){
+                                    // console.log( response );
+                                    if (response.results.length > 0) {
+                                        var store_latitude = response.results[0].geometry.location.lat;
+                                        var store_longitude = response.results[0].geometry.location.lng
+
+                                        var url = "http://maps.googleapis.com/maps/api/directions/json?origin="+ user_latitude +","+ user_longitude +"&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+                                        // var url = "http://maps.googleapis.com/maps/api/directions/json?origin=-32.750957,145.5619689&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+
+
+                                    } else {
+                                        var url = "NOTAVAILABLE";
+                                    }
+
+                                    direction_urls_array.push({
+                                        title: v,
+                                        link:  url
+                                    });
+
+                                    var array_count = direction_urls_array.length;
+                                    if ( counter == array_count ) {
+                                        state_distance_sort( direction_urls_array );
+                                    }
+                                })
+                            } )
+                        }
+
+                        function store_user_distance ( v ) {
+                            var direction_urls_array = [];
+
+                            var user_latitude = jQuery( "input.user_latitude" ).val();
+                            var user_longitude = jQuery( "input.user_longitude" ).val();
+
+                            var list_count = jQuery( "#state-popup .form-popup-content ul li" ).length;
+                            $( "#state-popup .form-popup-content ul li" ).each( function(){
+                                // var p = $(this).find('a').attr("data");
+                                // var v = $(this).find('a').text();
+                                // $("#"+p).val(v);
+                                // $("input#quote-store").val("");
+                                $(".form-overlap").removeClass("show");
+                                $(".form-popup").removeClass("show");
+                                $("body").removeClass("noScroll");
+                                $("html").removeClass("noScroll");
+                                $.ajax({
+                                    url: url,
+                                    method: "POST",
+                                    data: {
+                                        act: "stores",
+                                        state: v
+                                    },
+                                    success: function(res){
+                                        list_count = res.length;
+                                        $("#store-popup .form-popup-content ul").empty();
+                                        res.map(function(i){
+                                            // console.log( i.shopping_centre );
+                                            $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                                            geocode();
+
+                                            function geocode() {
+                                                var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+                                                var store_address = i.shopping_centre;
+                                                store_address = store_address.replace(/\s+/g, '+');
+                                                var mapsAPI = "AIzaSyC9eMKA1RPjjEqkth8IFUy-guxkPF7KTIY";
+                                                var location = mapsURL + store_address + '/' + mapsAPI;
+                                                $.get(location, {
+                                                    params: {
+                                                        address: location
+                                                    }
+                                                }).done(function(response){
+                                                    // console.log( response );
+                                                    if (response.results.length > 0) {
+                                                        var store_latitude = response.results[0].geometry.location.lat;
+                                                        var store_longitude = response.results[0].geometry.location.lng
+
+                                                        var url = "http://maps.googleapis.com/maps/api/directions/json?origin="+ user_latitude +","+ user_longitude +"&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+                                                        // var url = "http://maps.googleapis.com/maps/api/directions/json?origin=-32.750957,145.5619689&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
+
+
+                                                    } else {
+                                                        var url = "NOTAVAILABLE";
+                                                    }
+
+                                                    direction_urls_array.push({
+                                                        title: i.shopping_centre,
+                                                        store_id:  i.store_id,
+                                                        link:  url
+                                                    });
+
+                                                    var array_count = direction_urls_array.length;
+
+                                                    if ( array_count == list_count ) {
+                                                        store_distance_sort( direction_urls_array );
+                                                    }
+                                                })
+                                            }
+
+                                        });
+                                    },
+                                    error: function(res){
+                                        console.log(res);
+                                    }
+                                });
+                            } )
+                        }
+
+                        function state_distance_sort ( direction_urls_array ) {
+                            var direction_urls = direction_urls_array;
+                            var site_url = window.location.origin;
+                            jQuery.ajax({
+                                type: "POST",
+                                url: site_url + '/wp-content/themes/happytel/custom-ajax-functions.php',
+                                data:{
+                                    'type' : 'state_sort_distance',
+                                    'direction_urls' : direction_urls,
+                                },
+
+                                success: function ( data ) {
+                                    // jQuery( "#state-popup .form-popup-content ul" ).empty().append( data );
+                                    // var first_option = jQuery( "#state-popup .form-popup-content ul li" ).first().text();
+                                    // jQuery( "#quote-state" ).val( first_option );
+                                    // store_user_distance( first_option );
+                                    jQuery( '#quote-form' ).removeClass( 'loading' );
+                                },
+                                error: function ( data ) {
+                                    console.log('error');
+                                }
+                            } );
+                        }
+
+                        function store_distance_sort ( direction_urls_array ) {
+                            var direction_urls = direction_urls_array;
+                            var site_url = window.location.origin;
+                            jQuery.ajax({
+                                type: "POST",
+                                url: site_url + '/wp-content/themes/happytel/custom-ajax-functions.php',
+                                data:{
+                                    'type' : 'store_sort_distance',
+                                    'direction_urls' : direction_urls,
+                                },
+
+                                success: function ( data ) {
+                                    // jQuery( "#store-popup .form-popup-content ul" ).empty().append( data );
+                                    // var first_option = jQuery( "#store-popup .form-popup-content ul li" ).first().text();
+                                    // jQuery( "#quote-store" ).val( first_option );
+                                    jQuery( '#quote-form' ).removeClass( 'loading' );
+                                },
+                                error: function ( data ) {
+                                    console.log('error');
+                                }
+                            } );
+                        }
+                    });
+
+
+
+
+                </script>
+            </div>
+
+        </div>
+        <!-- <div class="quote-offer">
+            <div class="flex-row">
+                <div class="col2">
+                    <h2><i class="icon-icons-timer"></i> <span>Limited Offer</span></h2>
+                </div>
+                <div class="col2">
+                    <h3>Get a free portable battery</h3>
+                    <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
+                    <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="quote-store-addr site-inner">
+            <!-- <div class="flex-row"> --> <div>
+            <div class="col2">
+                <div class="addr-text">
+                    <h3>HAPPYTEL</h3>
+                    <h2>Westfield Knox Shopping Centre</h2>
+                    <p class="addr">KM13 (near Telstra) Westfield Knox Shopping Centre 425 Burwood Hwy, <br>Wantirna South VIC 3152</p>
+                    <p><a class="tel" href="tel:03 9800 2321">03 9800 2321</a></p>
+                    <!-- <p><a href="#">See store details &gt;</a></p> -->
+                    <div class="quote-store-cta">
+                        <a href="tel:03 9800 2321" class="btn-2">Call store</a>
+                        <a href="https://www.google.com/maps/place/Westfield+Knox/@-37.86876,145.239868,15z/data=!4m2!3m1!1s0x0:0x2a9bb58662bcd176?hl=en-US" class="btn-2" target="_blank">Get directions</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 注释地图
+            <div class="col2">
+                <div class="map-container">
+                    <div id="store-map"></div>
+                </div>
+            </div>
+              -->
+        </div>
+        </div>
+    </div>
+</div>
+<div class="quote-footer">
+    <div class="site-inner">
+        <div class="quote-footer-inner">
+            <div id="q1" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>130,000 devices repaired annually</h3>
+                    <p>Being Australia’s largest independent retailer for over 20 years, we are the most experienced technicians around. Your device will be safe with us.</p>
+                </div>
+            </div>
+            <div id="q2" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>6 month Australia wide warranty</h3>
+                    <p>For your peace of mind, all of our repairs come with a 6 month warranty</p>
+                </div>
+            </div>
+            <div id="q3" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>A+ quality parts</h3>
+                    <p>Our parts are sourced only from the world’s leading manufacturers to ensure the highest available quality in the market.</p>
+                </div>
+            </div>
+            <div id="q4" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>Trained repair technicians</h3>
+                    <p>Every one of our technicians across Australia and New Zealand are certified graduates of repairs.</p>
+                </div>
+            </div>
+            <div id="q5" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>Quick turnaround</h3>
+                    <p>We're not just the safest, but also the fastest repairers out there.</p>
+                </div>
+            </div>
+            <div id="q6" class="quote-footer-block">
+                <div class="quote-block-inner">
+                    <h3>School & Business Services</h3>
+                    <p>Are you a school or business in need of a repair? Contact us to see what deals are on offer for you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="EmailMeQuote" class="form-popup">
+    <div class="form-popup-header">
+        &nbsp;
+    </div>
+    <div class="form-popup-content">
+        <form id="email-quote" action="quoteme.php" method="post">
+            <input type="hidden" name="email-id" value="50915" />
+            <input type="hidden" name="email-brand" value="Samsung" />
+            <input type="hidden" name="email-model" value="Galaxy S9 Plus" />
+            <input type="hidden" name="email-issue" value="Screen Replacement" />
+            <input type="hidden" name="email-state" value="VIC" />
+            <input type="hidden" name="email-store" value="306" />
+            <input type="hidden" name="price[]" value="549.00" />
+            <input type="email" name="email" placeholder="Your email address" required/>
+            <input id="emailquote-btn" type="submit" class="btn" value="Email Me Quote"/>
+            <div id="email-quote-msg"><img src="__STATIC__/home/wp-content/themes/happytel/images/Spinner.gif" style="width: 30px;display:none;"/><span></span></div>
+        </form>
+    </div>
+</div>
+<!--
+<script>
+    function initMap() {
+        var address = "km13 (near telstra) westfield knox shopping centre 425 burwood hwy, wantirna south vic 3152";
+        var geocoder = new google.maps.Geocoder();
+        var myLatlng;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                myLatlng = results[0].geometry.location;
+                var mapOptions = {
+                    zoom: 15,
+                    center: myLatlng,
+                    mapTypeControlOptions: {
+                        mapTypeIds: 'roadmap'
+                    }
+                };
+                var map = new google.maps.Map(document.getElementById('store-map'),
+                    mapOptions);
+
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    icon: 'https://www.happytel.com/wp-content/themes/happytel/images/Marker.png'
+                });
+                marker.setMap(map);
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TEpzUITrsiwQXBgTgj2DRGA88ovajWY&callback=initMap" async defer></script>
+-->
+<script>
+    jQuery(function($){
+        $("#email-quote").submit(function(e){
+            e.preventDefault();
+            $("#emailquote-btn").hide();
+
+            $.ajax({
+                url: "quoteme.php",
+                method: "POST",
+                data: $("#email-quote").serialize(),
+                beforeSend: function(){
+                    $("#email-quote-msg>img").show();
+                },
+                success: function(res){
+                    $("#email-quote-msg>img").hide();
+                    $("#email-quote-msg>span").html(res);
+                }
+            })
+        });
+    });
+</script>
+{include file="public/footer" /}
+
+</body>
+</html>

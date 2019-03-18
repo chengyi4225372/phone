@@ -48,13 +48,22 @@ class Common extends Controller {
     }
 
     public function is_header(){
-         $act = input('post.act');
-         if($act == 'brands'){
+         $act   = input('post.act');
+         $brand = input('post.brand');
+         //品牌
+         if($act == 'brands'&& $act !='models' ){
              $phone = Db::name('phone_pai')->field('id ,pai')->select();
              $arr = json_encode($phone);
              echo $arr;
              exit();
+         }else if($act =='models' && $brand !=''){  //型号
+                 $pid   = Db::name('phone_pai')->where('pai',$brand)->value('id'); //查询品牌id
+                 $arr = Db::name('phone_models')->where('pid',$pid)->field('id,models')->select();
+                 echo json_encode($arr);
+                 exit();
+         }else{
+            echo json_encode('获取数据失败！');
+            exit();
          }
-
     }
 }

@@ -1,7 +1,9 @@
 {include file="public/header" /}
 
-{include file="public/top" /}
 
+{include file="public/top_null" /}
+
+</header>
 <header id="mobile-header" class="site-header" role="banner">
 <div class="mobile-header-top">
 	<div class="site-inner-big">
@@ -87,18 +89,18 @@
     <div class="page-content">
         <div class="site-inner">
             <div class="page-content-block">
- <form id="quote-form" action="/quote-result/" method="post">
+ <form id="quote-form" action="{:url('index/quote_result')}" method="post">
     <input type="hidden" name="store_id" id="store_id" value=""/>
      <div class="form-row-1">
         <span>I would like to repair my </span>
         <span class="search-input-wrapper">
             <span id="quote-brand-overlay" class="search-input-overlap"></span>
-            <input id="quote-brand" class="search-input" type="text" value="" name="brand" placeholder="Apple" required/>   
+            <input id="quote-brand" class="search-input" type="text" value="{$Think.get.brand}" name="brand" placeholder="Apple" required/>
         </span>
         <span> model </span>
         <span class="search-input-wrapper">
             <span id="quote-model-overlay" class="search-input-overlap"></span>
-            <input id="quote-model" type="text" class="search-input" value="" name="model" placeholder="iPhone" required />
+            <input id="quote-model" type="text" class="search-input" value="{$Think.get.model}" name="model" placeholder="iPhone" required />
         </span>
     </div>
     <div class="form-row">
@@ -234,7 +236,7 @@ jQuery(document).ready(function($){
 
     }
 
-    // 品牌 不为空
+    // 型号 不为空
     if(initData.brand != ""){
         $.ajax({
             url: url,
@@ -245,8 +247,9 @@ jQuery(document).ready(function($){
             },
             success: function(res){
                 $("#model-popup .form-popup-content ul").empty();
+                //转对象
                 res.map(function(i){
-                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="quote-model">'+i.models+'</a></li>');
                 });
             },
             error: function(res){
@@ -255,7 +258,7 @@ jQuery(document).ready(function($){
         });
     }
 
-   //型号
+   //诊断
     if(initData.model != ""){
         $.ajax({
             url: url,
@@ -278,7 +281,7 @@ jQuery(document).ready(function($){
         });
     };
 
-    //问题不为空
+    //地区
     if(initData.state != ""){
         $.ajax({
             url: url,
@@ -288,9 +291,11 @@ jQuery(document).ready(function($){
                 state: initData.state
             },
             success: function(res){
+                //转对象
+                res =$.parseJSON(res);
                 $("#store-popup .form-popup-content ul").empty();
-                res.map(function(i){
-                    $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
+                $.map(res,function(i){
+                    $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.names+'" data="quote-store" storeid="'+i.id+'">'+i.names+'</a></li>');
                 });
             },
             error: function(res){
@@ -299,7 +304,7 @@ jQuery(document).ready(function($){
         });
     };
 
-    //
+    //品牌
     $.ajax({
         url: url,
         method: "POST",
@@ -309,7 +314,7 @@ jQuery(document).ready(function($){
         success: function(res){
             res= $.parseJSON(res)
             $.map(res ,function(i){
-                $("#brand-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-brand">'+i+'</a></li>');
+                $("#brand-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="quote-brand">'+i.pai+'</a></li>');
             });
         },
         error: function(res){
@@ -317,7 +322,7 @@ jQuery(document).ready(function($){
         }
     });
 
-
+    //地区
     $.ajax({
         url: url,
         method: "POST",
@@ -327,10 +332,10 @@ jQuery(document).ready(function($){
         success: function(res){
             res= $.parseJSON(res);
             res.map(function(i){
-                $("#state-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-state">'+i+'</a></li>');
+                $("#state-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="quote-state">'+i.names+'</a></li>');
                 
             });
-            state_user_distance( res.length );
+            //state_user_distance( res.length );
         },
         error: function(res){
             console.log(res);
@@ -358,9 +363,10 @@ jQuery(document).ready(function($){
                 brand: v
             },
             success: function(res){
+                res= $.parseJSON(res);
                 $("#model-popup .form-popup-content ul").empty();
                 res.map(function(i){
-                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="quote-model">'+i+'</a></li>');
+                    $("#model-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="quote-model">'+i.models+'</a></li>');
                 });
             },
             error: function(res){
@@ -368,7 +374,6 @@ jQuery(document).ready(function($){
             }
         });
     });
-
 
     $(document).on("click", "#model-popup .form-popup-content ul li a", function(e){
         e.preventDefault();
@@ -388,10 +393,11 @@ jQuery(document).ready(function($){
                 model: v
             },
             success: function(res){
+                res = $.parseJSON(res);
                 $("#issue-popup .form-popup-content ul").empty();
                 res.map(function(i){
                     if(i != ""){
-                        $("#issue-popup .form-popup-content ul").append('<li class="'+i.toLowerCase()+'"><a href="#'+i+'" class="'+i.toLowerCase()+'" data="quote-issue">' + '<span>' + i + '</span>' + '</a></li>');
+                        $("#issue-popup .form-popup-content ul").append('<li class="'+i.names+'"><a href="#'+i.id+'" class="'+i.names+'" data="quote-issue">' + '<span>' + i.names + '</span>' + '</a></li>');
                     }
                 });
             },
@@ -402,65 +408,66 @@ jQuery(document).ready(function($){
     });
 
     $(document).on("click", "#state-popup .form-popup-content ul li a", function(e){
-      
-      
+      /*
       var p = $(this).attr("data");
       var v = $(this).text();
       $("#"+p).val(v);
-      
+
       store_user_distance( v );
-        // e.preventDefault();
-        // var p = $(this).attr("data");
-        // var v = $(this).text();
-        // $("#"+p).val(v);
-        // $("input#quote-store").val("");
-        // $(".form-overlap").removeClass("show");
-        // $(".form-popup").removeClass("show");
-        // $("body").removeClass("noScroll");
-        // $("html").removeClass("noScroll");
-        // $.ajax({
-            // url: url,
-            // method: "POST",
-            // data: {
-                // act: "stores",
-                // state: v
-            // },
-            // success: function(res){
-                // $("#store-popup .form-popup-content ul").empty();
-                // res.map(function(i){
-                    // $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
-                    	// geocode();
-			
-			// function geocode() {
-				// var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-				// var store_address = i.shopping_centre;
-				// store_address = store_address.replace(/\s+/g, '+');
-				// var mapsAPI = "AIzaSyBLXDcnm6uPuikLnYlOqgPYyWyK2kjX2n0"
-				// var location = mapsURL + store_address + '/' + mapsAPI;
-				// $.get(location, {
-					// params: {
-						// address: location
-					// }
-				// })
-				// .done(function(response){
-					// console.log('Latitude: ' + response.results[0].geometry.location.lat + ', Longitude: ' + response.results[0].geometry.location.lng);
-					// console.log(response);
-				// })
-			// } 
-			
-                // });
-            // },
-            // error: function(res){
-                // console.log(res);
-            // }
-        // });
+        e.preventDefault();
+        */
+        var p = $(this).attr("data");
+        var v = $(this).text();
+        $("#"+p).val(v);
+        $("input#quote-store").val("");
+        $(".form-overlap").removeClass("show");
+        $(".form-popup").removeClass("show");
+        $("body").removeClass("noScroll");
+        $("html").removeClass("noScroll");
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                act: "stores",
+                state: v
+            },
+            success: function(res){
+                //转对象
+                res = $.parseJSON(res);
+                $("#store-popup .form-popup-content ul").empty();
+                res.map(function(i){
+                    $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.names+'" data="quote-store" storeid="'+i.id+'">'+i.names+'</a></li>');
+                    	//geocode();
+			/*
+			function geocode() {
+				var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+				var store_address = i.shopping_centre;
+				store_address = store_address.replace(/\s+/g, '+');
+				var mapsAPI = "AIzaSyBLXDcnm6uPuikLnYlOqgPYyWyK2kjX2n0"
+				var location = mapsURL + store_address + '/' + mapsAPI;
+				$.get(location, {
+					params: {
+						address: location
+					}
+				})
+				.done(function(response){
+					console.log('Latitude: ' + response.results[0].geometry.location.lat + ', Longitude: ' + response.results[0].geometry.location.lng);
+					console.log(response);
+				})
+			}
+			*/
+                });
+            },
+            error: function(res){
+                console.log(res);
+            }
+        });
     });
 
     $(document).on("click", "#issue-popup .form-popup-content ul li a", function(e){
 		if(!$(this).hasClass('others')) {
 			e.preventDefault();	
 		}
-		
         var p = $(this).attr("data");
         var v = $(this).text();
         $("#"+p).val(v);
@@ -482,6 +489,10 @@ jQuery(document).ready(function($){
         $("body").removeClass("noScroll");
         $("html").removeClass("noScroll");
     });
+
+
+
+
 
     $("#quote-brand-overlay").click(function(){
         $(".form-overlap").addClass("show");
@@ -575,7 +586,9 @@ jQuery(document).ready(function($){
 				});
 			
 			};	*/
-  
+
+
+
   function state_user_distance ( counter ) {
     var direction_urls_array = [];
      
@@ -627,13 +640,13 @@ jQuery(document).ready(function($){
         })
     } ) 
   }
-  
+
   function store_user_distance ( v ) {
-    var direction_urls_array = []; 
-     
+    var direction_urls_array = [];
+
     var user_latitude = jQuery( "input.user_latitude" ).val();
     var user_longitude = jQuery( "input.user_longitude" ).val();
-    
+
     var list_count = jQuery( "#state-popup .form-popup-content ul li" ).length;
     $( "#state-popup .form-popup-content ul li" ).each( function(){
         // var p = $(this).find('a').attr("data");
@@ -658,7 +671,7 @@ jQuery(document).ready(function($){
                     // console.log( i.shopping_centre );
                     $("#store-popup .form-popup-content ul").append('<li><a href="#'+i.shopping_centre+'" data="quote-store" storeid="'+i.store_id+'">'+i.shopping_centre+'</a></li>');
                     geocode();
-      
+
                   function geocode() {
                     var mapsURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
                     var store_address = i.shopping_centre;
@@ -671,41 +684,41 @@ jQuery(document).ready(function($){
                       }
                     }).done(function(response){
                       // console.log( response );
-                      if (response.results.length > 0) {                        
+                      if (response.results.length > 0) {
                         var store_latitude = response.results[0].geometry.location.lat;
                         var store_longitude = response.results[0].geometry.location.lng
-                        
+
                         var url = "http://maps.googleapis.com/maps/api/directions/json?origin="+ user_latitude +","+ user_longitude +"&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
                         // var url = "http://maps.googleapis.com/maps/api/directions/json?origin=-32.750957,145.5619689&destination="+ store_latitude +","+ store_longitude +"&sensor=false&mode=DRIVING";
-                                  
-                        
+
+
                       } else {
                         var url = "NOTAVAILABLE";
                       }
-                      
+
                       direction_urls_array.push({
-                        title: i.shopping_centre, 
+                        title: i.shopping_centre,
                         store_id:  i.store_id,
                         link:  url
                       });
-                        
+
                       var array_count = direction_urls_array.length;
-                      
+
                       if ( array_count == list_count ) {
                         store_distance_sort( direction_urls_array );
                       }
                     })
-                  } 
-      
+                  }
+
                 });
             },
             error: function(res){
                 console.log(res);
             }
         });
-    } ) 
+    } )
   }
-  
+
   function state_distance_sort ( direction_urls_array ) {
     var direction_urls = direction_urls_array;
     var site_url = window.location.origin;
@@ -729,7 +742,7 @@ jQuery(document).ready(function($){
       }
     } );
   }
-  
+
   function store_distance_sort ( direction_urls_array ) {
     var direction_urls = direction_urls_array;
     var site_url = window.location.origin;
@@ -756,82 +769,6 @@ jQuery(document).ready(function($){
 
 </script>
 
-
-
-<!--
- <script>
-   $(document).ready(function(){
-                        var  url = "{:url('api/phoneinfo/index')}";
-                        var initData = {
-                            brand: "",
-                            model: "",
-                            issue: "",
-                            state: "",
-                            store: "",
-                            storeId: ""
-                        };
-
-                        //品牌
-                        $("#quote-brand-overlay").click(function(){
-                            $(".form-overlap").addClass("show");
-                            $("#brand-popup").addClass("show");
-                            $("html").addClass("noScroll");
-                            $("body").addClass("noScroll");
-                        });
-
-                        //型号
-                        $("#quote-model-overlay").click(function(){
-                            $(".form-overlap").addClass("show");
-                            $("#model-popup").addClass("show");
-                            $("html").addClass("noScroll");
-                            $("body").addClass("noScroll");
-                        });
-                        //故障
-                        $("#quote-issue-overlay").click(function(){
-                            $(".form-overlap").addClass("show");
-                            $("#issue-popup").addClass("show");
-                            $("html").addClass("noScroll");
-                            $("body").addClass("noScroll");
-                        });
-
-                        //地区
-                        $("#quote-state-overlay").click(function(){
-                            $(".form-overlap").addClass("show");
-                            $("#state-popup").addClass("show");
-                            $("html").addClass("noScroll");
-                            $("body").addClass("noScroll");
-                        });
-
-                        //商店
-                        $("#quote-store-overlay").click(function(){
-                            $(".form-overlap").addClass("show");
-                            $("#store-popup").addClass("show");
-                            $("html").addClass("noScroll");
-                            $("body").addClass("noScroll");
-                        });
-
-                        //搜出品牌
-                        $.ajax({
-                            url: url,
-                            method: "POST",
-                            data: {
-                                act: "brands"
-                            },
-                            success: function(res){
-                                $.each(res,function(i,item){
-                                    $("#brand-popup .form-popup-content ul").append('<li><a href="#'+item+'" data="quote-brand">'+item+'</a></li>');
-                                });
-                            },
-                            error: function(res){
-                                console.log(res);
-                            }
-                        });
-
-
-
-                    });
-</script>
--->
 
   </div>
         </div>
@@ -879,7 +816,7 @@ jQuery(document).ready(function($){
         </div>
     </div>
 </div>
-{include file="public/footer" /}
+{include file="public/footer"/}
 
 
 </body>

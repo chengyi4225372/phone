@@ -114,7 +114,8 @@ jQuery(document).ready(function($){
 			}
 
 	}
-	
+
+	//头部 显示 品牌
 	$.ajax({
 		url: api_url,
 		method: "POST",
@@ -122,28 +123,33 @@ jQuery(document).ready(function($){
 			act: "brands"
 		},
 		success: function(res){
+			//转换对象
 			res= $.parseJSON(res);
-			res.map(function(i,val){
-				$("#header-brand-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="header-search-brand">'+val+'</a></li>');
+			console.log(res);
+			res.map(function(i,val,arr){
+				$("#header-brand-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="header-search-brand">'+i.pai+'</a></li>');
 				if($("#sd-brand-popup").length>0){
-					$("#sd-brand-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="sd-search-brand">'+val+'</a></li>');
+					$("#sd-brand-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="sd-search-brand">'+i.pai+'</a></li>');
 				}
 			});
+
 		},
 		error: function(res){
 			console.log(res);
 		}
 	});
-	
+
+
 	$(document).on("click", "#header-brand-popup .form-popup-content ul li a", function(e){
 		e.preventDefault();
-		var p = $(this).attr("data");
-		var v = $(this).text();
+		var p = $(this).attr("data");//获取 data 属性
+		var v = $(this).text();   //返回文本内容
 		$("#"+p).val(v);
 		$("#header-search-model").val("");
 		$(".form-overlap").removeClass("show");
 		$(".form-popup").removeClass("show");
-	
+
+		//型号
 		$.ajax({
 			url: api_url,
 			method: "POST",
@@ -152,9 +158,11 @@ jQuery(document).ready(function($){
 				brand: v
 			},
 			success: function(res){
+				//转换对象
+				res = $.parseJSON(res);
 				$("#header-model-popup .form-popup-content ul").empty();
-				res.map(function(i){
-					$("#header-model-popup .form-popup-content ul").append('<li><a href="#'+i+'" data="header-search-model">'+i+'</a></li>');
+				res.map(function(i,val){
+					$("#header-model-popup .form-popup-content ul").append('<li><a href="#'+i.id+'" data="header-search-model">'+i.models+'</a></li>');
 				});
 			},
 			error: function(res){

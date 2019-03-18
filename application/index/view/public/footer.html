@@ -21,11 +21,11 @@
                 </div>
                 <div class="footer-col-content">
                     <ul>
-                        <li><a href="/store-locator/">Store Locator</a></li>
-                        <li><a href="/self-diagnosis/">Self Diagnosis</a></li>
+                        <!--<li><a href="/store-locator/">Store Locator</a></li>-->
+                        <li><a href="{:url('index/self_diagnosis')}">Self Diagnosis</a></li>
                         <li><a href="{:url('index/online_quote')}">Online Quote</a></li>
                         <li><a href="{:url('contact/contact')}">Contact Us</a></li>
-                        <li><a href="/warranty-information/">Warranty Information</a></li>
+                        <!--<li><a href="/warranty-information/">Warranty Information</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -77,10 +77,7 @@
     </div>
     <div class="form-popup-content">
         <ul>
-            <li><a href="#222" data="quote-brand">iphone x</a></li>
-            <li><a href="#222" data="quote-brand">iphone 8p</a></li>
-            <li><a href="#222" data="quote-brand">iphone 8</a></li>
-            <li><a href="#222" data="quote-brand">iphone 7p</a></li>
+            <li></li>
         </ul>
         <p class="other-link"><a href="{:url('index/contact/contact')}">Other <span>(Please Contact for Custom Quote)</span></a></p>
     </div>
@@ -88,12 +85,13 @@
 <script type='text/javascript'>
     /* <![CDATA[ */
    // var wpcf7 = {"apiSettings":{"root":"https:\/\/www.happytel.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+
     var wpcf7 = {"apiSettings":{"root":"index/contact","namespace":"index/contact"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
 
     /* ]]> */
 </script>
 
-<script type='text/javascript'src='__STATIC__/home/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.0.2'></script>
+<script type='text/javascript'src='__STATIC__/home/wp-content/plugins/contact-form-7/includes/js/scripts.js'></script>
 <script type='text/javascript'src='__STATIC__/home/wp-content/themes/happytel/js/skip-link-focus-fix.js?ver=20160816'></script>
 <script type='text/javascript'src='__STATIC__/home/wp-content/themes/happytel/js/jquery-ui/jquery-ui.min.js'></script>
 <script type='text/javascript'src='__STATIC__/home/wp-content/themes/happytel/js/odometer.js'></script>

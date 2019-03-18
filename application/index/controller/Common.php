@@ -47,11 +47,6 @@ class Common extends Controller {
 
     }
 
-
-
-
-
-
     public function is_header(){
          $act = input('post.act');
          if($act == 'brands'){

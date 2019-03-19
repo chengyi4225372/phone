@@ -101,7 +101,7 @@
                             <div role="form" class="wpcf7" id="wpcf7-f32-p14-o1" lang="en-US" dir="ltr">
 <div class="screen-reader-response"></div>
 
-<form action="" method="post" class="wpcf7-form" novalidate="novalidate" >
+<form action="" method="post" class="wpcf7-form" novalidate="novalidate" id="contact_form" >
 <div style="display: none;">
 <input type="hidden" name="_wpcf7" value="32" />
 <input type="hidden" name="_wpcf7_version" value="5.0.2" />
@@ -111,19 +111,25 @@
 </div>
 
 <div class="form-row"><label>Full name<span>*</span></label>
-	<span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span>
+	<span class="wpcf7-form-control-wrap your-name">
+		<input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span>
 </div>
 <div class="form-row"><label>Email Address<span>*</span></label>
-	<span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span>
+	<span class="wpcf7-form-control-wrap your-email">
+		<input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span>
 </div>
 <div class="form-row"><label>Phone Number<span>*</span></label>
-	<span class="wpcf7-form-control-wrap your-phone"><input type="text" name="your-phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span>
+	<span class="wpcf7-form-control-wrap your-phone">
+		<input type="text" name="your-phone" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span>
 </div>
 <div class="form-row"><label>Message<span>*</span></label>
-	<span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span>
+	<span class="wpcf7-form-control-wrap your-message">
+		<textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea>
+	</span>
 </div>
 <div class="form-row">
-<div class="wpcf7-form-control-wrap"><div data-sitekey="6LckQUYUAAAAAHb_EO03IgjfDpJuMee343QrsGEz" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"></div>
+<div class="wpcf7-form-control-wrap">
+	<div data-sitekey="6LckQUYUAAAAAHb_EO03IgjfDpJuMee343QrsGEz" class="wpcf7-form-control g-recaptcha wpcf7-recaptcha"></div>
 <noscript>
 	<div style="width: 302px; height: 422px;">
 		<div style="width: 302px; height: 422px; position: relative;">
@@ -140,7 +146,8 @@
 </noscript>
 </div>
 </div>
-<div class="form-row"><input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit" id="contact" /></div>
+<div class="form-row">
+	<input type="submit" value="Send" class="wpcf7-form-control wpcf7-submit" id="contact" /></div>
 <div class="wpcf7-response-output wpcf7-display-none"></div>
 </form>
 	</div>
@@ -191,7 +198,46 @@
 </div>
 
 {include file="public/footer" /}
+<script>
+	jQuery("#contact_form").submit(function(){
+		var name = jQuery("input[name='your-name']").val();
+		var email = jQuery("input[name='your-email']").val();
+		var phone = jQuery("input[name='your-phone").val();
+		var message = jQuery("textarea[name='your-message").val();
+	    if(name==''){
+			jQuery("span.your-name").append("<span style='color:#ff2600;'>Please fill in this field!</span>");
+			return false;
+		}
+		if(email==''){
+			jQuery("span.your-email").append("<span style='color:#ff2600;'>Please fill in this field!</span>");
+			return false;
+		}
+		if(phone==''){
+			jQuery("span.your-phone").append("<span style='color:#ff2600;'>Please fill in this field!</span>");
+			return false;
+		}
+		if(message==''){
+			jQuery("span.your-message").append("<span style='color:#ff2600;'>Please fill in this field!</span>");
+			return false;
+		}
+		jQuery.ajax({
+			url:"{:url('contact/contact_info')}",
+			type:'post',
+			data:{name:name,email:email,phone:phone,message:message},
+			success:function(res){
+                if(res.code == '200'){
+					alert('Successful submission!');
+					window.location.href="{:url('index/index')}";
+				}else{
+					alert('error!');
+				}
+			}
+		})
+	})
 
+
+
+</script>
 
  
 </body>

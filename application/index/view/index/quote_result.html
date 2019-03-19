@@ -110,11 +110,12 @@
                             </div>
 
                                                     </div> -->
+                         <!-- 店铺 介绍信息-->
                         <div class="quote-offer">
                             <h3><i class="icon-icons-timer"></i> <span>Limited Offer</span></h3>
                             <h4>Get a free portable battery</h4>
                             <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
-                            <a id="booknow-btn" href="{:url('index/book_now')}" class="white-btn">BOOK NOW</a>
+                            <a id="booknow-btn" href="#" onclick="show_url()" class="white-btn">BOOK NOW</a>
                         </div>
                         <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
                     </div>
@@ -870,12 +871,12 @@
     <div class="form-popup-content">
         <form id="email-quote" action="quoteme.php" method="post">
             <input type="hidden" name="email-id" value="50915" />
-            <input type="hidden" name="email-brand" value="Samsung" />
-            <input type="hidden" name="email-model" value="Galaxy S9 Plus" />
-            <input type="hidden" name="email-issue" value="Screen Replacement" />
-            <input type="hidden" name="email-state" value="VIC" />
-            <input type="hidden" name="email-store" value="306" />
-            <input type="hidden" name="price[]" value="549.00" />
+            <input type="hidden" name="email-brand" value="{$data.brand}" />
+            <input type="hidden" name="email-model" value="{$data.model}" />
+            <input type="hidden" name="email-issue" value="{$data.issue}" />
+            <input type="hidden" name="email-state" value="{$data.state}" />
+            <input type="hidden" name="email-store" value="{$data.store_id}" />
+            <input type="hidden" name="price[]" value="{$data.price}" />
             <input type="email" name="email" placeholder="Your email address" required/>
             <input id="emailquote-btn" type="submit" class="btn" value="Email Me Quote"/>
             <div id="email-quote-msg"><img src="__STATIC__/home/wp-content/themes/happytel/images/Spinner.gif" style="width: 30px;display:none;"/><span></span></div>
@@ -915,6 +916,7 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TEpzUITrsiwQXBgTgj2DRGA88ovajWY&callback=initMap" async defer></script>
 -->
+<!-- 邮箱-->
 <script>
     jQuery(function($){
         $("#email-quote").submit(function(e){
@@ -936,6 +938,34 @@
         });
     });
 </script>
+
+<!-- 跳转 booking_confirmation-->
+<script>
+    function show_url(){
+             var store_id = jQuery("input[name='email-store']").val();
+             var brand = jQuery("input[name='email-brand']").val();
+             var model = jQuery("input[name='email-model']").val();
+             var issue = jQuery("input[name='email-issue']").val();
+             var state = jQuery("input[name='email-state']").val();
+             var price = jQuery("input[name='price[]']").val();
+             jQuery.ajax({
+                 url:"{:url('index/book_now')}",
+                 type:"post",
+                 data:{store_id:store_id,brand:brand,
+                       model:model,issue:issue,state:state,
+                       price:price},
+                 success:function(res){
+                       if(res.msg=='error'){
+                           alert('this  is filed');
+                       }else{
+                          // window.location.href="{:url('index/book_now')}"
+                       }
+                 }
+             })
+    }
+</script>
+
+
 {include file="public/footer" /}
 
 </body>

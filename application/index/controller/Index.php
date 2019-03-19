@@ -62,17 +62,49 @@ class Index extends Common {
             $where = array('pid'=>$pid,'mid'=>$mid,'cid'=>$cid);
             $data['price']= Db::name('phone_money')->where($where)->value('money');
             $this->assign('data',$data);
+            return $this->view->fetch();
+        }else{
+            return false;
         }
-        return $this->view->fetch();
+
     }
 
-    //表单提交信息页面
-    public function book_now(){
-        return $this->view->fetch();
+    //ajax 接受维修信息
+    public function book(){
+          if($this->request->isPost()){
+                $arr = input('post.');
+                 return $arr;
+          }
     }
 
-    //订单通知页面
+    //提交用户信息
+    public function  book_now(){
+         $arr = $this->book();
+         if(!$arr){
+             $this->result('','400','error','json');
+         }else{
+             $this->assign('arr',$arr);
+             return $this->view->fetch();
+         }
+
+    }
+
+    //ajax 用户个人信息
+    public function booking(){
+        if($this->request->isPost()){
+            $arr = input('post.');
+           dump($arr);
+           exit();
+        }
+    }
+
+
+    //订单页面
     public function booking_confirmation(){
+        $info = $this->booking();
+        dump($info);
+        exit();
+        $this->assign('info',$info);
         return $this->view->fetch();
     }
 

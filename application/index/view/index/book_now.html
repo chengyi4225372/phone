@@ -326,22 +326,22 @@
                                     </div>
                                 </li>
                                 <li id='field_2_6' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_6' id='input_2_6' type='hidden' class='gform_hidden' aria-invalid="false" value='{$arr.model}'/>
+                                    <input name='input_6' id='input_2_6' type='hidden' class='gform_hidden' aria-invalid="false" value=''/>
                                 </li>
                                 <li id='field_2_8' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
                                     <input name='input_8' id='input_2_8' type='hidden' class='gform_hidden' aria-invalid="false" value='Screen Replacement'/>
                                 </li>
                                 <li id='field_2_7' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_7' id='input_2_7' type='hidden' class='gform_hidden' aria-invalid="false" value="{$arr.price}"/>
+                                    <input name='input_7' id='input_2_7' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
                                 </li>
                                 <li id='field_2_12' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_12' id='input_2_12' type='hidden' class='gform_hidden' aria-invalid="false" value='{$arr.issue}'/>
+                                    <input name='input_12' id='input_2_12' type='hidden' class='gform_hidden' aria-invalid="false" value=''/>
                                 </li>
                                 <li id='field_2_9' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_9' id='input_2_9' type='hidden' class='gform_hidden' aria-invalid="false" value="{$arr.state}"/>
+                                    <input name='input_9' id='input_2_9' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
                                 </li>
                                 <li id='field_2_10' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_10' id='input_2_10' type='hidden' class='gform_hidden' aria-invalid="false" value="{$arr.store_id}"/>
+                                    <input name='input_10' id='input_2_10' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
                                 </li>
 
 
@@ -850,20 +850,21 @@
             jQuery("ul#input_2_11").append("<li style='color:#ff0000;'>Please choose the replacement type!</li>");
             return false;
         }
-        jQuery.ajax({
-            url:"{:url('index/booking')}",
-            type:"post",
-            data:{name:name,email:email,
+        var data ={name:name,email:email,
                 date:date,screen:screen,
                 tel:tel,zhen:zhen,price:price,
                 state:state,store:store,time:time
-            },
+            };
+        jQuery.ajax({
+            url:"{:url('index/booking_confirmation')}",
+            type:"get",
+            data:{data:data},
             success:function(res){
-                if(res.code == '400'){
-                    alert('请填写指定字段！');
-                }else{
-                  // window.location.href="{:url('index/booking_confirmation')}";
-                }
+                //if(res.code == '400'){
+                  //  alert('请填写指定字段！');
+                //}else{
+                 window.location.href="{:url('index/booking_confirmation')}";
+                //}
             }
         })
 

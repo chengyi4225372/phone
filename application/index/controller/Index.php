@@ -69,42 +69,34 @@ class Index extends Common {
 
     }
 
-    //ajax 接受维修信息
-    public function book(){
-          if($this->request->isPost()){
-                $arr = input('post.');
-                 return $arr;
-          }
-    }
+
 
     //提交用户信息
     public function  book_now(){
-         $arr = $this->book();
-         if(!$arr){
-             $this->result('','400','error','json');
-         }else{
-             $this->assign('arr',$arr);
-             return $this->view->fetch();
-         }
-
+        /*
+         if($this->request->isPost()){
+             $data['store_id'] = input('post.store_id');
+             $data['brand'] = input('post.brand');
+             $data['model'] = input('post.model');
+             $data['issue'] = input('post.issue');
+             $data['state'] = input('state');
+             $data['price'] = input('price');
+            foreach($data as $k =>$val){
+                 if($data[$k] == ''|| $data[$k] == null){
+                     $this->result('','400','error','json');
+                 }
+            }
+             $this->assign('data',$data);
+             $this->redirect('index/book_now','','',['data'=>$data]);
+         }*/
+        return $this->view->fetch();
     }
 
-    //ajax 用户个人信息
-    public function booking(){
-        if($this->request->isPost()){
-            $arr = input('post.');
-           dump($arr);
-           exit();
-        }
-    }
 
 
     //订单页面
     public function booking_confirmation(){
-        $info = $this->booking();
-        dump($info);
-        exit();
-        $this->assign('info',$info);
+        //$this->assign('info',$info);
         return $this->view->fetch();
     }
 

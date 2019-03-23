@@ -115,7 +115,7 @@
                             <h3><i class="icon-icons-timer"></i> <span>Limited Offer</span></h3>
                             <h4>Get a free portable battery</h4>
                             <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
-                            <a id="booknow-btn" href="#" onclick="show_url()" class="white-btn">BOOK NOW</a>
+                            <a id="booknow-btn" href="{:url('index/book_now')}" onclick="" class="white-btn">BOOK NOW</a>
                         </div>
                         <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
                     </div>
@@ -940,6 +940,7 @@
 </script>
 
 <!-- 跳转 booking_confirmation-->
+
 <script>
     function show_url(){
              var store_id = jQuery("input[name='email-store']").val();
@@ -950,20 +951,22 @@
              var price = jQuery("input[name='price[]']").val();
              jQuery.ajax({
                  url:"{:url('index/book_now')}",
-                 type:"post",
+                 type:"get",
                  data:{store_id:store_id,brand:brand,
                        model:model,issue:issue,state:state,
                        price:price},
                  success:function(res){
                        if(res.msg=='error'){
-                           alert('this  is filed');
+                           alert('Field missing');
                        }else{
-                          // window.location.href="{:url('index/book_now')}"
+                          window.location.href="{:url('index/book_now')}";
+                         //return true;
                        }
                  }
              })
     }
 </script>
+
 
 
 {include file="public/footer" /}

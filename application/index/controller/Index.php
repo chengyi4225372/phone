@@ -29,22 +29,6 @@ class Index extends Common {
         return $this->view->fetch();
     }
 
-/* todo 自我诊断     */
-   //自我诊断
-    public function self_diagnosis(){
-        return $this->view->fetch();
-    }
-
-    //新闻列表
-    public function self_diagnosis_list(){
-        return $this->view->fetch();
-    }
-
-    //新闻详情
-    public function self_diagnosis_new(){
-        return $this->view->fetch();
-    }
-
     //金额 对应 具体详情 todo 后期优化
     public function quote_result(){
         if(request()->isPost()){
@@ -72,13 +56,13 @@ class Index extends Common {
 
     //提交用户信息
     public function  book_now(){
-         $data['store_id'] = input('get.store_id');
-         $data['brand'] = input('get.brand');
-         $data['model'] = input('get.model');
-         $data['price'] = input('get.price');
-         $data['issue'] = input('get.issue');
-         $this->assign('data',$data);
-         return $this->view->fetch();
+        $data['store_id'] = input('get.store_id');
+        $data['brand'] = input('get.brand');
+        $data['model'] = input('get.model');
+        $data['price'] = input('get.price');
+        $data['issue'] = input('get.issue');
+        $this->assign('data',$data);
+        return $this->view->fetch();
     }
 
 
@@ -108,17 +92,15 @@ class Index extends Common {
             'screen'=>$data['screen'],
         );
         $result_id = Db::name('order_list')->insertGetId($res);
-         if($result_id){
+        if($result_id){
             session('order_id',$result_id);
             $this->redirect('index/booking_confirmation');
-         }
+        }
     }
-
-
 
     //订单页面
     public function booking_confirmation(){
-         $data = Db::name('order_list')->where('id',session('order_id'))->find();
+        $data = Db::name('order_list')->where('id',session('order_id'))->find();
         if(empty($data)){
             echo "<script>alert('Order submission failed!')</script>";
             return false;
@@ -127,6 +109,26 @@ class Index extends Common {
         return $this->view->fetch();
     }
 
+/* todo 自我诊断     */
+   //自我诊断
+    public function self_diagnosis(){
+        return $this->view->fetch();
+    }
+
+    //新闻列表
+    public function self_diagnosis_list(){
+        return $this->view->fetch();
+    }
+
+    //新闻详情
+    public function self_diagnosis_new(){
+        return $this->view->fetch();
+    }
+
+    //新闻搜索
+    public function diagnosis_results(){
+         return $this->view->fetch();
+    }
 
 
 }

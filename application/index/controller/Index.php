@@ -130,5 +130,15 @@ class Index extends Common {
          return $this->view->fetch();
     }
 
+    //条款和条件
+    public function terms_and_conditions(){
+        return $this->view->fetch();
+    }
+
+    //隐私条款
+    public function privacy_policy(){
+        return $this->view->fetch();
+    }
+
 
 }

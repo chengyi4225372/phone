@@ -1,0 +1,92 @@
+{extend name='admin@public/content'}
+
+{block name="content"}
+<form class="layui-form layui-box modal-form-box" action="{:request()->url()}" data-auto="true" method="post">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户姓名</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" value='{$vo.name|default=""}'class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="email" value='{$vo.email|default=""}'  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机型号</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone" value='{$vo.phone|default=""}' class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">维修价格</label>
+        <div class="layui-input-block">
+            <input type="text" name="price" value='{$vo.price|default=""}' class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">诊断类型</label>
+        <div class="layui-input-block">
+            <input type="text" name="issue" value='{$vo.issue|default=""}'   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="date" value='{$vo.date|default=""}'  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约维修时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="time" value='{$vo.time|default=""}'  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约地区</label>
+        <div class="layui-input-block">
+            <input type="text" name="state" value='{$vo.state|default=""}'  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约店铺</label>
+        <div class="layui-input-block">
+            <input type="text" name="store" value='{$vo.store|default=""}'  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">屏幕维修类型</label>
+        <div class="layui-input-block">
+            <input type="text" name="screen" value='{$vo.screen|default=""}'  class="layui-input">
+        </div>
+    </div>
+    
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'>{/if}
+        <button class="layui-btn" type='submit'>保存数据</button>
+        <!--        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close>取消编辑</button>-->
+    </div>
+</form>
+<script>
+    require(['jquery', 'ckeditor'], function() {
+        window.form.render();
+        $('form [name="img"]').uploadOneImage();
+        window.createEditor('[name="content"]', {height: 500});
+    });
+</script>
+{/block}
+

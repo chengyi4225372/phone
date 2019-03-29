@@ -70,33 +70,60 @@ class Index extends Common {
     }
 
 
-
     //提交用户信息
     public function  book_now(){
-        /*
-         if($this->request->isPost()){
-             $data['store_id'] = input('post.store_id');
-             $data['brand'] = input('post.brand');
-             $data['model'] = input('post.model');
-             $data['issue'] = input('post.issue');
-             $data['state'] = input('state');
-             $data['price'] = input('price');
-            foreach($data as $k =>$val){
-                 if($data[$k] == ''|| $data[$k] == null){
-                     $this->result('','400','error','json');
-                 }
-            }
-             $this->assign('data',$data);
-             $this->redirect('index/book_now','','',['data'=>$data]);
-         }*/
-        return $this->view->fetch();
+         $data['store_id'] = input('get.store_id');
+         $data['brand'] = input('get.brand');
+         $data['model'] = input('get.model');
+         $data['price'] = input('get.price');
+         $data['issue'] = input('get.issue');
+         $this->assign('data',$data);
+         return $this->view->fetch();
+    }
+
+
+    //保存订单信息
+    public function booking_order(){
+        $data['store_id'] = input('get.store_id');
+        $data['name'] = input('get.name');
+        $data['email'] = input('get.email');
+        $data['price'] = input('get.price');
+        $data['date'] = input('get.date');
+        $data['screen'] = input('get.screen');
+        $data['zhen'] = input('get.zhen');
+        $data['time'] = input('get.time');
+        $data['tel']  = input('get.tel');
+        $data['store'] = Db::name('store')->field('sid,names')->where('id',$data['store_id'])->find();
+        $data['state'] = Db::name('state')->where('id',$data['store']['sid'])->value('names');
+        $res = array(
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'price'=>$data['price'],
+            'issue'=>$data['zhen'],
+            'date'=>$data['date'],
+            'time'=>$data['time'],
+            'state'=>$data['state'],
+            'store'=>$data['store']['names'],
+            'phone'=>$data['tel'],
+            'screen'=>$data['screen'],
+        );
+        $result_id = Db::name('order_list')->insertGetId($res);
+         if($result_id){
+            session('order_id',$result_id);
+            $this->redirect('index/booking_confirmation');
+         }
     }
 
 
 
     //订单页面
     public function booking_confirmation(){
-        //$this->assign('info',$info);
+         $data = Db::name('order_list')->where('id',session('order_id'))->find();
+        if(empty($data)){
+            echo "<script>alert('Order submission failed!')</script>";
+            return false;
+        }
+        $this->assign('data',$data);
         return $this->view->fetch();
     }
 

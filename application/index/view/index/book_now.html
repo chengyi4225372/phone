@@ -322,20 +322,21 @@
                                         </ul>
                                     </div>
                                 </li>
+
                                 <li id='field_2_6' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_6' id='input_2_6' type='hidden' class='gform_hidden' aria-invalid="false" value=''/>
+                                    <input name='input_6' id='input_2_6' type='hidden' class='gform_hidden' aria-invalid="false" value='{$data.model}'/>
                                 </li>
                                 <li id='field_2_8' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
                                     <input name='input_8' id='input_2_8' type='hidden' class='gform_hidden' aria-invalid="false" value='Screen Replacement'/>
                                 </li>
                                 <li id='field_2_7' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_7' id='input_2_7' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
+                                    <input name='input_7' id='input_2_7' type='hidden' class='gform_hidden' aria-invalid="false" value="{$data.price}"/>
                                 </li>
                                 <li id='field_2_12' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_12' id='input_2_12' type='hidden' class='gform_hidden' aria-invalid="false" value=''/>
+                                    <input name='input_12' id='input_2_12' type='hidden' class='gform_hidden' aria-invalid="false" value='{$data.issue}'/>
                                 </li>
                                 <li id='field_2_9' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
-                                    <input name='input_9' id='input_2_9' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
+                                    <input name='input_9' id='input_2_9' type='hidden' class='gform_hidden' aria-invalid="false" value="{$data.store_id}"/>
                                 </li>
                                 <li id='field_2_10' class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
                                     <input name='input_10' id='input_2_10' type='hidden' class='gform_hidden' aria-invalid="false" value=""/>
@@ -823,11 +824,11 @@
         var email = jQuery("#input_2_2").val();
         var date = jQuery("#input_2_3").val();
         var screen = jQuery("input[name='input_11']:checked").val(); //屏幕类型
-        var tel =jQuery("#input_2_6").val();
-        var zhen = jQuery("#input_2_12").val();
-        var price =jQuery("#input_2_7").val();
-        var state = jQuery("#input_2_9").val();
-        var store = jQuery("#input_2_10").val();
+        var tel =jQuery("#input_2_6").val();    //手机型号
+        var zhen = jQuery("#input_2_12").val(); //诊断类型
+        var price =jQuery("#input_2_7").val();  //价格
+        var store_id = jQuery("#input_2_9").val();  //店铺id
+       // var store = jQuery("#input_2_10").val();
         var time =  jQuery("#input_2_14").val();
         //console.log(screen);
         if(name == ''){
@@ -850,20 +851,9 @@
         var data ={name:name,email:email,
                 date:date,screen:screen,
                 tel:tel,zhen:zhen,price:price,
-                state:state,store:store,time:time
+                store_id:store_id,time:time
             };
-        jQuery.ajax({
-            url:"{:url('index/booking_confirmation')}",
-            type:"get",
-            data:{data:data},
-            success:function(res){
-                //if(res.code == '400'){
-                  //  alert('请填写指定字段！');
-                //}else{
-                 window.location.href="{:url('index/booking_confirmation')}";
-                //}
-            }
-        })
+        window.location.href="{:url('index/booking_order')}?name="+name+"&email="+email+"&date="+date+"&screen="+screen+"&tel="+tel+"&zhen="+zhen+"&price="+price+"&store_id="+store_id+"&time="+time;
     });
 
 </script>

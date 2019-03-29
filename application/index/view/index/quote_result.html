@@ -115,7 +115,7 @@
                             <h3><i class="icon-icons-timer"></i> <span>Limited Offer</span></h3>
                             <h4>Get a free portable battery</h4>
                             <p>Just let us send this quote to your email and repair your phone with us to redeem</p>
-                            <a id="booknow-btn" href="{:url('index/book_now')}" onclick="" class="white-btn">BOOK NOW</a>
+                            <a id="booknow-btn"  onclick="show_url()" class="white-btn">BOOK NOW</a>
                         </div>
                         <a id="emailmequote" href="#" class="white-btn">Email me quote</a>
                     </div>
@@ -128,15 +128,15 @@
                     <div class="form-row-1">
                         <span>I would like to repair my </span>
                         <span class="search-input-wrapper">
-            <span id="quote-brand-overlay" class="search-input-overlap"></span>
-            <input id="quote-brand" class="search-input" type="text" value="Samsung" name="brand" placeholder="Apple" required/>
-        </span>
+                        <span id="quote-brand-overlay" class="search-input-overlap"></span>
+                        <input id="quote-brand" class="search-input" type="text" value="Samsung" name="brand" placeholder="Apple" required/>
+                     </span>
                         <span> model </span>
                         <span class="search-input-wrapper">
             <span id="quote-model-overlay" class="search-input-overlap"></span>
             <input id="quote-model" type="text" class="search-input" value="Galaxy S9 Plus" name="model" placeholder="iPhone" required />
         </span>
-                    </div>
+        </div>
                     <div class="form-row">
                         <label for="quote-issue">Issue</label>
                         <span class="search-input-wrapper block">
@@ -151,7 +151,7 @@
                 <span id="quote-state-overlay" class="search-input-overlap"></span>
                 <input type="text" id="quote-state" value="VIC" name="state" required />
             </span>
-                        </div>
+         </div>
                         <div class="form-row-store">
                             <label for="quote-store">Store</label>
                             <span class="search-input-wrapper block">
@@ -796,6 +796,7 @@
                 </div>
             </div>
         </div> -->
+        <!-- 店铺信息 -->
         <div class="quote-store-addr site-inner">
             <!-- <div class="flex-row"> --> <div>
             <div class="col2">
@@ -874,7 +875,7 @@
             <input type="hidden" name="email-brand" value="{$data.brand}" />
             <input type="hidden" name="email-model" value="{$data.model}" />
             <input type="hidden" name="email-issue" value="{$data.issue}" />
-            <input type="hidden" name="email-state" value="{$data.state}" />
+            <input type="hidden" name="email-state" value="" />
             <input type="hidden" name="email-store" value="{$data.store_id}" />
             <input type="hidden" name="price[]" value="{$data.price}" />
             <input type="email" name="email" placeholder="Your email address" required/>
@@ -949,21 +950,11 @@
              var issue = jQuery("input[name='email-issue']").val();
              var state = jQuery("input[name='email-state']").val();
              var price = jQuery("input[name='price[]']").val();
-             jQuery.ajax({
-                 url:"{:url('index/book_now')}",
-                 type:"get",
-                 data:{store_id:store_id,brand:brand,
-                       model:model,issue:issue,state:state,
-                       price:price},
-                 success:function(res){
-                       if(res.msg=='error'){
-                           alert('Field missing');
-                       }else{
-                          window.location.href="{:url('index/book_now')}";
-                         //return true;
-                       }
-                 }
-             })
+             if(store_id !='' && brand !='' && model !='' && issue !=''){
+                 window.location.href="{:url('index/book_now')}?store_id="+store_id+"&brand="+brand+"&model="+model+"&issue="+issue+"&price="+price;
+             }else{
+                 return false;
+             }
     }
 </script>
 

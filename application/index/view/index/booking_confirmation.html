@@ -277,22 +277,22 @@
         <div class="site-inner">
             <div class="page-content-block">
                 <ul class="booking-confirmation">
-                    <li>Name: 111</li>
-                    <li>Email: 44816@qq.com</li>
-                    <li>Phone: phonemars </li>
-                    <li>Phone issue:屏幕</li>
+                    <li>Name: {$data.name|default=""}</li>
+                    <li>Email: {$data.email|default=""}</li>
+                    <li>Phone: {$data.phone|default=""}</li>
+                    <li>Phone issue:{$data.issue}</li>
 
-                    <li>Price:200</li>
-                    <li>Screen Type:</li>
+                    <li>Price:{$data.price?$data.price:'No offer yet!'}</li>
+                    <li>Screen Type:{$data.screen}</li>
                     <p><br />
                         <br />
                         <br />
                     </p>
                     <li style="margin: 0 auto !important; width: 100%;"></li>
-                    <li>State: </li>
-                    <li>Centre: </li>
-                    <li>Date: </li>
-                    <li>Time: </li>
+                    <li>State:{$data.state} </li>
+                    <li>Centre:{$data.store} </li>
+                    <li>Date:{$data.date} </li>
+                    <li>Time: {$data.time?$data.time:'Please contact yourself!'}</li>
                 </ul>
             </div>
         </div>

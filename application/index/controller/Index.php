@@ -13,8 +13,6 @@ use app\index\controller\Common;
 use think\Request;
 
 class Index extends Common {
-
-
     //首页
     public function index(){
         return $this->view->fetch();
@@ -53,7 +51,6 @@ class Index extends Common {
 
     }
 
-
     //提交用户信息
     public function  book_now(){
         $data['store_id'] = input('get.store_id');
@@ -64,7 +61,6 @@ class Index extends Common {
         $this->assign('data',$data);
         return $this->view->fetch();
     }
-
 
     //保存订单信息
     public function booking_order(){
